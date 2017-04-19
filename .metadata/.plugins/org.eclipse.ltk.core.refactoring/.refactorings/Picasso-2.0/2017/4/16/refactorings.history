@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;picasso2.Main&apos; to &apos;PicassoMain&apos;&#x0D;&#x0A;- Original project: &apos;Picasso-2.0&apos;&#x0D;&#x0A;- Original element: &apos;picasso2.Main&apos;&#x0D;&#x0A;- Renamed element: &apos;picasso2.PicassoMain&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Main&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;picasso2{Main.java[Main" matchStrategy="1" name="PicassoMain" qualified="false" references="true" similarDeclarations="false" stamp="1492631006981" textual="false" version="1.0"/>
+</session>
