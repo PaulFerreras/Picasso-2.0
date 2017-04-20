@@ -1,0 +1,28 @@
+package picasso2;
+
+import java.awt.LayoutManager;
+
+import javax.swing.JPanel;
+
+public class PicassoView extends JPanel {
+
+	public PicassoView() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public PicassoView(LayoutManager arg0) {
+		super(arg0);
+		// TODO Auto-generated constructor stub
+	}
+
+	public PicassoView(boolean isDoubleBuffered) {
+		super(isDoubleBuffered);
+		// TODO Auto-generated constructor stub
+	}
+
+	public PicassoView(LayoutManager layout, boolean isDoubleBuffered) {
+		super(layout, isDoubleBuffered);
+		// TODO Auto-generated constructor stub
+	}
+
+}

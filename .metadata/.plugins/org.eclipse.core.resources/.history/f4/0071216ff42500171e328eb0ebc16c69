@@ -1,0 +1,20 @@
+package picasso2;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+public class PicassoMenuBar extends JMenuBar {
+
+	private JMenu file_menu;
+	private JMenuItem open_menu_item, save_menu_item;
+	
+	public PicassoMenuBar() {
+		//PF: Create JMenus
+		file_menu = new JMenu("File");
+		
+		//PF: Add JMenus to MenuBar
+		add(file_menu);
+	}
+
+}

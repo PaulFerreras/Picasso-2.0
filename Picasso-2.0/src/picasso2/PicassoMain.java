@@ -1,6 +1,9 @@
 package picasso2;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,21 +20,33 @@ public class PicassoMain {
 		JFrame main_frame = new JFrame();
 		main_frame.setTitle("Picasso");
 		main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		main_frame.setSize(500, 500);
+		//main_frame.setSize(500, 500);
 		
-		/*PF: Create MainPanel that will hold the picture
-		 * Set color to White
+		/*PF: Instantiate Menubar
+		 * Set Mainframe's Menubar
 		 */
-		JPanel main_panel = new JPanel();
-		main_panel.setBackground(Color.WHITE);
+		PicassoMenuBar menu_bar = new PicassoMenuBar();
+		main_frame.setJMenuBar(menu_bar);
 		
-		//PF: MainPanel is placed inside of Mainframe
-		main_frame.setContentPane(main_panel);
+//		/*PF: Create MainPanel that will hold the picture
+//		 * Set color to White
+//		 */
+//		JPanel main_panel = new JPanel();
+//		main_panel.setBackground(Color.WHITE);
+//		
+//		//PF: Create blank Buffered Image
+//		BufferedImage main_image = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
+//		
+//		Graphics2D g2 = main_image.createGraphics();
+//		g2.drawImage(main_image, 0, 0, null);
+//		
+//		//PF: MainPanel is placed inside of Mainframe
+//		main_frame.setContentPane(main_panel);
 		
 		/*PF: Pack pushes everything together
 		 *Mainframe set to visible 
 		 */
-		//main_frame.pack();
+		main_frame.pack();
 		main_frame.setVisible(true);
 	}
 

@@ -1,0 +1,13 @@
+package picasso2;
+
+import javax.swing.JMenuBar;
+
+public class PicassoMenuBar extends JMenuBar {
+
+	private Jmenu file_menu;
+	
+	public PicassoMenuBar() {
+		file_menu
+	}
+
+}
