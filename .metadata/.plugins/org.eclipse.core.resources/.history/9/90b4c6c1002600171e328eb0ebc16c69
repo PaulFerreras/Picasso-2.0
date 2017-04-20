@@ -1,0 +1,11 @@
+package picasso2;
+
+public class PicassoModel {
+
+	private BufferedImage buffered_image;
+	
+	public PicassoModel() {
+		
+	}
+
+}

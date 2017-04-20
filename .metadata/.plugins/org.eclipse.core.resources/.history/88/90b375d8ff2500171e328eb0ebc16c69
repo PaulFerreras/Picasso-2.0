@@ -8,11 +8,8 @@ import javax.swing.JPanel;
 public class PicassoView extends JPanel {
 
 	public PicassoView() {
-		
-		//PF: Set Layout to BorderLayout
+		//Set Layout to BorderLayout
 		setLayout(new BorderLayout());
-		
-		
 	}
 
 }

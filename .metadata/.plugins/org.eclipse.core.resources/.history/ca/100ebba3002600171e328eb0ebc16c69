@@ -22,7 +22,7 @@ public class PicassoMain {
 		main_frame.setJMenuBar(menu_bar);
 		
 		//PF: Instantiate Model, View, and Controller
-		PicassoModel model = new PicassoModel();
+		
 		
 		/*PF: Pack pushes everything together
 		 *Mainframe set to visible 

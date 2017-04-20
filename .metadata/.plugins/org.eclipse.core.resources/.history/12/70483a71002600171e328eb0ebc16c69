@@ -1,5 +1,10 @@
 package picasso2;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,8 +26,7 @@ public class PicassoMain {
 		PicassoMenuBar menu_bar = new PicassoMenuBar();
 		main_frame.setJMenuBar(menu_bar);
 		
-		//PF: Instantiate Model, View, and Controller
-		PicassoModel model = new PicassoModel();
+		/*PF: Instantiate Model, View, and Controller
 		
 		/*PF: Pack pushes everything together
 		 *Mainframe set to visible 
