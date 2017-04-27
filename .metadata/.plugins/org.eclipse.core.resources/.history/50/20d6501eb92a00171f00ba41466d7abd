@@ -1,0 +1,27 @@
+package test;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		JFrame main_frame = new JFrame();
+		main_frame.setTitle("TestMain");
+		main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//JPanel main_panel = new JPanel(new BorderLayout());
+		//main_panel.setPreferredSize(new Dimension(1000,1000));
+
+		MainPanelTest main_panel = new MainPanelTest();
+		
+		main_frame.setContentPane(main_panel);
+		
+		main_frame.pack();
+		main_frame.setVisible(true);
+	}
+
+}

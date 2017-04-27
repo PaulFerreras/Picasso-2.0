@@ -1,0 +1,26 @@
+package picasso2;
+
+import java.awt.image.BufferedImage;
+
+public class PicassoModel {
+
+	private BufferedImage buffered_image;
+	
+	public PicassoModel() {
+		
+		/*PF: Instantiate Plain White Buffered Image
+		 * Used as starting image when app opens
+		 */
+		buffered_image = new BufferedImage(500, 500, BufferedImage.TYPE_3BYTE_BGR);
+	}
+	
+	public void setBufferedImage(BufferedImage new_buffered_image) {
+		buffered_image = new_buffered_image;
+		return;
+	}
+	
+	public BufferedImage getBufferedImage() {
+		return buffered_image;
+	}
+
+}

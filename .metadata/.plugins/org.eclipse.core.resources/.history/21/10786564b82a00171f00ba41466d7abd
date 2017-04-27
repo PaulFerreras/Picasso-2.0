@@ -1,0 +1,20 @@
+package test;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		JFrame main_frame = new JFrame();
+		
+		JPanel main_panel = new JPanel(new BorderLayout());
+
+		main_frame.setContentPane(main_panel);
+		
+		main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+}

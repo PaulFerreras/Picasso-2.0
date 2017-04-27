@@ -1,0 +1,107 @@
+package java2dgraphics;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+
+public class MainView extends JPanel {
+
+	private PlayerView player_view;
+	private MainFrame main_frame;
+	private ArrayList<ShotView> shot_views_fired;
+	private ArrayList<EnemyView> enemy_views_list;
+
+	public MainView(MainFrame main_frame) {
+		this.main_frame = main_frame;
+		player_view = null;
+
+		// Shot_Views_Fired ArrayList gets instantiated
+		shot_views_fired = new ArrayList<ShotView>();
+		
+		// Enemy_Views_List ArrayList gets instantiated
+		enemy_views_list = new ArrayList<EnemyView>();
+
+		// Sets Black Border
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+		// Sets White Background
+		setBackground(Color.WHITE);
+	}
+
+	// Overrides paintComponent of JPanel
+	// Allows for geometric shapes to be drawn
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+
+		// Shots
+		if (!shot_views_fired.isEmpty()) {
+			// Draw all Shots in array list
+			for (ShotView shot_view : shot_views_fired) {
+				shot_view.drawSprite(g);
+			}
+		}
+		
+		// Enemies
+		if (!enemy_views_list.isEmpty()) {
+			//Draw all Enemies in array list
+			for (EnemyView enemy_view: enemy_views_list) {
+				enemy_view.drawSprite(g);
+			}
+		}
+
+		// Player
+		if (player_view != null) {
+			// Draw Player
+			player_view.drawSprite(g);
+		}
+
+	}
+	
+	// Creates Player
+	// **Need To Create Player Death
+	public void createPlayerView(Player player) {
+		player_view = new PlayerView(main_frame, player);
+	}
+
+	// Creates ShotView and adds it to
+	// Shot_Views_Fired ArrayList
+	public void createShotView(Shot shot) {
+		shot_views_fired.add(new ShotView(main_frame, shot));
+	}
+
+	// Removes ShotView from Shot_Views_Fired
+	// ArrayList
+	public void removeShotView(Shot shot) {
+		shot_views_fired.remove(shot.getShotView());
+	}
+	
+	// Creates EnemyRedView and adds it to
+	// Enemy_Views_Fired ArrayList
+	
+	public void createEnemyRedView(EnemyRed enemy_red) {
+		enemy_views_list.add(new EnemyRedView(main_frame, enemy_red));
+	}
+	
+	// Creates EnemyBlueView and adds it to
+	// Enemy_Views_Fired ArrayList
+	public void createEnemyBlueView(EnemyBlue enemy_blue) {
+		enemy_views_list.add(new EnemyBlueView(main_frame, enemy_blue));
+	}
+	
+	// Creates EnemyGreenView and adds it to
+	// Enemy_Views_Fired ArrayList
+	public void createEnemyGreenView(EnemyGreen enemy_green) {
+		enemy_views_list.add(new EnemyGreenView(main_frame, enemy_green));
+	}
+	
+	// Removes EnemyView from Enemy_Views_List
+	// ArrayList
+	public void removeEnemyView(Enemy enemy) {
+		enemy_views_list.remove(enemy.getEnemyView());
+	}
+
+}

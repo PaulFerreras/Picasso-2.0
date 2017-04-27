@@ -1,0 +1,13 @@
+package test;
+
+import javax.swing.JFrame;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		JFrame main_frame = new JFrame();
+		
+
+	}
+
+}

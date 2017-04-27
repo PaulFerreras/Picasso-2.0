@@ -1,0 +1,28 @@
+package test;
+
+import java.awt.LayoutManager;
+
+import javax.swing.JPanel;
+
+public class MainPanelTest extends JPanel {
+
+	public MainPanelTest() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public MainPanelTest(LayoutManager layout) {
+		super(layout);
+		// TODO Auto-generated constructor stub
+	}
+
+	public MainPanelTest(boolean isDoubleBuffered) {
+		super(isDoubleBuffered);
+		// TODO Auto-generated constructor stub
+	}
+
+	public MainPanelTest(LayoutManager layout, boolean isDoubleBuffered) {
+		super(layout, isDoubleBuffered);
+		// TODO Auto-generated constructor stub
+	}
+
+}

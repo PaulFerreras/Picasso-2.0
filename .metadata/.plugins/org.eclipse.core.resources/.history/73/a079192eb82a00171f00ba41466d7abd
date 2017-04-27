@@ -1,0 +1,15 @@
+package test;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		JFrame main_frame = new JFrame();
+		
+		JPanel main_panel = new JPanel(new BorderLayout());
+
+	}
+
+}

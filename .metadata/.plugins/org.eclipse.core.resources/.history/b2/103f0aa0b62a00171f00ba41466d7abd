@@ -1,0 +1,46 @@
+package java2dgraphics;
+
+public class Main {
+
+	public static void main(String[] args) {
+		MainFrame main_frame = new MainFrame();
+
+		// Model, View, Controller
+		MainModel main_model = new MainModel(main_frame);
+		MainView main_view = new MainView(main_frame);
+		MainController main_controller = new MainController(main_model, main_view);
+		
+		// Controller is an observer of Model
+		main_model.addObserver(main_controller);
+		
+		// Main_View gets added to Main_Frame
+		main_frame.setContentPane(main_view);
+		
+		// Main_View must request key focus
+		main_view.requestFocusInWindow();
+		
+		// Game Loop
+		// Locked at 60 FPS
+		final long frames_per_second = 60;
+		long screen_refresh_rate = (long) 1e9 / frames_per_second;
+		
+		// Nano_Timer and
+		// Nanoseconds_Passed Instantiated
+		// 1 second equals 1e9 nanoseconds
+		long nano_timer = 0;
+		long nanoseconds_passed = 0;
+		
+		while (true) {
+			nano_timer = System.nanoTime() - nanoseconds_passed;
+			
+			if (nano_timer >= screen_refresh_rate) {
+				main_controller.update(nano_timer);
+				main_model.update();
+//				main_view.repaint();
+
+				nanoseconds_passed = System.nanoTime();
+			}
+		}
+	}
+
+}
