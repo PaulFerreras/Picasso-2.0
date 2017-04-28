@@ -1,0 +1,18 @@
+package picasso2;
+
+import java.awt.LayoutManager;
+
+import javax.swing.JPanel;
+
+public class PicassoCanvas extends JPanel {
+
+	public PicassoCanvas() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public PicassoCanvas(LayoutManager arg0) {
+		super(arg0);
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -13,6 +13,7 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 	
 	private PicassoModel model;
 	private PicassoView view;
+	private PicassoCanvas canvas;
 
 	public PicassoController(PicassoModel model, PicassoView view) {
 		/*PF: PicassoController gets model
@@ -21,7 +22,13 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		 */
 		this.model = model;
 		this.view = view;
+		this.canvas = view.getPicassoCanvas();
 		
+		/*PF: PicassoController is added
+		 * as a MouseListener and 
+		 * a MouseMotionListener to
+		 * view
+		 */
 		this.view.addMouseListener(this);
 		this.view.addMouseMotionListener(this);
 	}
@@ -44,8 +51,24 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		
 	}
 
+	/*PF: When user presses cursor,
+	 * controller draws on canvas
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
+		/*PF: Offsets x and y so that
+		 * the mouse cursor is in the 
+		 * center of what is drawn
+		 */
+		int x = e.getX() - 5;
+		int y = e.getY() - 5;
+		
+		/*PF: User presses invokes 
+		 * draw method in model and 
+		 * repaint method in view
+		 */
+		model.draw(x, y);
+		canvas.repaint(x, y, 10, 10);
 	}
 
 	@Override
@@ -54,6 +77,9 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		
 	}
 
+	/*PF: When user presses and drags cursor,
+	 * controller draws on canvas
+	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		/*PF: Offsets x and y so that
@@ -68,7 +94,7 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		 * repaint method in view
 		 */
 		model.draw(x, y);
-		view.repaint(x, y, 10, 10);
+		canvas.repaint(x, y, 10, 10);
 	}
 
 	@Override

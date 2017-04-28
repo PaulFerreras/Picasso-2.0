@@ -55,6 +55,11 @@ public class PicassoModel {
 
 	//PF: Method used to draw on the buffered image
 	public void draw(int x, int y) {
+		
+		/*PF: Draw is standardized to
+		 * a black circle shape with
+		 * a radius of 5
+		 */
 		g2 = buffered_image.createGraphics();
 		g2.setColor(Color.BLACK);
 		g2.fillOval(x, y, 10, 10);

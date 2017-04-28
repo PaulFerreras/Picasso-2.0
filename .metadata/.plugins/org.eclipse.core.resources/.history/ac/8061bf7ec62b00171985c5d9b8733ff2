@@ -1,0 +1,21 @@
+package picasso2;
+
+import java.awt.BorderLayout;
+import java.awt.LayoutManager;
+
+import javax.swing.JPanel;
+
+//PF: This is where the actual buffered image is rendered
+
+public class PicassoCanvas extends JPanel {
+	
+	private PicassoModel model;
+	
+	public PicassoCanvas(PicassoModel model) {
+		//PF: Set to BorderLayout
+		setLayout(new BorderLayout());
+		
+		
+	}
+
+}

@@ -1,0 +1,15 @@
+package picasso2;
+
+import java.awt.LayoutManager;
+
+import javax.swing.JPanel;
+
+public class PicassoCanvas extends JPanel {
+	
+	public PicassoCanvas(LayoutManager layout) {
+		super(layout);
+
+		
+	}
+
+}

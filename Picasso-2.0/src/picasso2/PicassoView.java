@@ -1,6 +1,7 @@
 package picasso2;
 
 import java.awt.BorderLayout;
+import java.awt.LayoutManager;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,8 +15,7 @@ import javax.swing.JPanel;
 public class PicassoView extends JPanel {
 
 	private PicassoModel model;
-	private int height;
-	private int width;
+	private PicassoCanvas canvas;
 	
 	public PicassoView(PicassoModel model) {
 		
@@ -25,25 +25,20 @@ public class PicassoView extends JPanel {
 		//PF: Set model to Picasso Model
 		this.model = model;
 		
-		//PF: Initialize size as Buffered Image size
-		setPreferredSize(new Dimension(model.getBufferedImage().getWidth(), 
-				model.getBufferedImage().getHeight()));
-	}
-
-	/*PF: This is the function called 
-	 * when View gets repainted.
-	 * Overrides paintComponent of JPanel.
-	 * This allows Buffered Images to be drawn
-	 */
-	@Override
-	public void paintComponent(Graphics g) {
-		/* PF: Send graphics to JPanel above.
-		 * Allows the background of the component
-		 * to be opaque
+		/*PF: Create JPanels for the
+		 * buffered image (canvas),
+		 * color selection
 		 */
-		super.paintComponent(g);
+		canvas = new PicassoCanvas(this.model);
+//		JPanel color_selection = new JPanel(new BorderLayout());
 		
-		//PF: Draw Buffered Image at (0,0)
-		g.drawImage(model.getBufferedImage(), 0, 0, null);
+		add(canvas, BorderLayout.CENTER);
+//		add(color_selection, BorderLayout.SOUTH);
 	}
+	
+	//PF: gets Canvas
+	public PicassoCanvas getPicassoCanvas() {
+		return canvas;
+	}
+	
 }
