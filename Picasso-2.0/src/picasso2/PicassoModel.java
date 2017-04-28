@@ -9,6 +9,8 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+//PF: This is where the buffered image is located
+
 public class PicassoModel {
 
 	private BufferedImage buffered_image;
@@ -17,19 +19,11 @@ public class PicassoModel {
 		
 		/*PF: Instantiate Plain White Buffered Image
 		 * Used as starting image when application opens
+		 * Note: Graphics2D and Graphics are similar,
+		 * however; Graphics2D support more complex drawing
 		 */
 		buffered_image = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
-
 		
-//		try {
-//			buffered_image = ImageIO.read(new URL("http://www.cs.unc.edu/~kmp/kmp.jpg"));
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 	
 	public void setBufferedImage(BufferedImage new_buffered_image) {

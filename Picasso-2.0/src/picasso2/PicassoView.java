@@ -6,6 +6,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
+/*PF: This is the UI of the program.
+ * This is what the user sees and
+ * interacts with.
+ */
+
 public class PicassoView extends JPanel {
 
 	private PicassoModel model;
@@ -51,7 +56,7 @@ public class PicassoView extends JPanel {
 //				model.getBufferedImage().getHeight()));
 		
 		//PF: Assign graphics 2D to BufferedImage in model
-		//g = model.getBufferedImage().getGraphics();
+//		g = model.getBufferedImage().getGraphics();
 		
 		//PF: Draw Buffered Image at (0,0)
 		g.drawImage(model.getBufferedImage(), 0, 0, null);

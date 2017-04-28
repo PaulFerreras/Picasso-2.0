@@ -1,6 +1,7 @@
 package picasso2;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
@@ -19,9 +20,9 @@ public class PicassoView extends JPanel {
 		//PF: Set model to Picasso Model
 		this.model = model;
 		
-		//PF: Initialize size as 0x0;
-		height = 0;
-		width = 0;
+		//PF: Initialize size as Buffered Image size
+		setPreferredSize(new Dimension(model.getBufferedImage().getWidth(), 
+				model.getBufferedImage().getHeight()));
 	}
 
 	/*PF: This is the function called 
@@ -39,11 +40,20 @@ public class PicassoView extends JPanel {
 		
 		/*PF: Cast graphics to graphics 2D.
 		 * Graphics 2D is required to draw
-		 * buffered images
+		 * and edit buffered images
 		 */
-		Graphics2D g2 = (Graphics2D) g;
+//		Graphics2D g2 = (Graphics2D) g;
 		
-		height = model.getBufferedImage().getHeight();
-		width = model.getBufferedImage().getWidth();
+		/*PF: Set new size of View
+		 * to accommodate picture;
+		 */
+//		this.setPreferredSize(new Dimension(model.getBufferedImage().getWidth(), 
+//				model.getBufferedImage().getHeight()));
+		
+		//PF: Assign graphics 2D to BufferedImage in model
+		//g = model.getBufferedImage().getGraphics();
+		
+		//PF: Draw Buffered Image at (0,0)
+		g.drawImage(model.getBufferedImage(), 0, 0, null);
 	}
 }

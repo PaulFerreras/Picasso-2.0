@@ -3,8 +3,10 @@ package picasso2;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class PicassoMain {
+//PF: This is what is running the main program
 
+public class PicassoMain {
+	
 	public static void main(String[] args) {
 		
 		/*PF: Instantiate Mainframe
@@ -24,6 +26,7 @@ public class PicassoMain {
 		//PF: Instantiate Model, View, and Controller
 		PicassoModel model = new PicassoModel();
 		PicassoView view = new PicassoView(model);
+		PicassoController controller = new PicassoController(model, view);
 		
 		//PF: Set View as ContentPane of MainFrame
 		main_frame.setContentPane(view);

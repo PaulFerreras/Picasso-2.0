@@ -9,6 +9,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+//PF: This is the Menubar of the program
+
 public class PicassoMenuBar extends JMenuBar implements ActionListener {
 
 	private JMenu file_menu;

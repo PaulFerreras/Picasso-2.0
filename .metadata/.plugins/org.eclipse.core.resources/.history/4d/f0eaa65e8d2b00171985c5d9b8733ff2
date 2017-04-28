@@ -1,0 +1,9 @@
+package picasso2;
+
+public class PicassoController {
+
+	public PicassoController() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
