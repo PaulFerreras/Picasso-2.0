@@ -27,10 +27,10 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		/*PF: PicassoController is added
 		 * as a MouseListener and 
 		 * a MouseMotionListener to
-		 * view
+		 * canvas
 		 */
-		this.view.addMouseListener(this);
-		this.view.addMouseMotionListener(this);
+		this.canvas.addMouseListener(this);
+		this.canvas.addMouseMotionListener(this);
 	}
 
 	@Override
@@ -67,8 +67,9 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		 * draw method in model and 
 		 * repaint method in view
 		 */
-		model.draw(x, y);
-		canvas.repaint(x, y, 10, 10);
+		model.drawPressed(x, y);
+		//canvas.repaint(x, y, 10, 10);
+		canvas.repaint();
 	}
 
 	@Override
@@ -93,8 +94,9 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		 * draw method in model and 
 		 * repaint method in view
 		 */
-		model.draw(x, y);
-		canvas.repaint(x, y, 10, 10);
+		model.drawDragged(x, y);
+		//canvas.repaint(x, y, 10, 10);
+		canvas.repaint();
 	}
 
 	@Override

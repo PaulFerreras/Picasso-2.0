@@ -32,10 +32,11 @@ public class PicassoView extends JPanel {
 		 * color selection
 		 */
 		canvas_panel = new CanvasPanel(this.model);
-		tool_panel = new ToolPanel();
-		color_selection_panel = new ColorSelectionPanel();
+//		tool_panel = new ToolPanel();
+//		color_selection_panel = new ColorSelectionPanel();
 		
 		add(canvas_panel, BorderLayout.CENTER);
+//		add(tool_panel, BorderLayout.NORTH); 
 	}
 	
 	//PF: gets Canvas

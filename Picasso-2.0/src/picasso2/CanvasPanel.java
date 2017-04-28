@@ -1,11 +1,14 @@
 package picasso2;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.LayoutManager;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 //PF: This is where the actual buffered image is rendered
 
@@ -17,11 +20,15 @@ public class CanvasPanel extends JPanel {
 		//PF: Set to BorderLayout
 		setLayout(new BorderLayout());
 		
+		//PF: Set Border to Black Line Border
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
 		this.model = model;
 		
 		//PF: Initialize size as Buffered Image size
 		setPreferredSize(new Dimension(model.getBufferedImage().getWidth(), 
 				model.getBufferedImage().getHeight()));
+
 	}
 	
 	/*PF: This is the function called 
