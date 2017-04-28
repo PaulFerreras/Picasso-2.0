@@ -56,19 +56,12 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
-		/*PF: Offsets x and y so that
-		 * the mouse cursor is in the 
-		 * center of what is drawn
-		 */
-		int x = e.getX() - 5;
-		int y = e.getY() - 5;
 		
 		/*PF: User presses invokes 
 		 * draw method in model and 
 		 * repaint method in view
 		 */
-		model.drawPressed(x, y);
-		//canvas.repaint(x, y, 10, 10);
+		model.draw(e.getX(), e.getY(), e.getID());
 		canvas.repaint();
 	}
 
@@ -83,19 +76,12 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		/*PF: Offsets x and y so that
-		 * the mouse cursor is in the 
-		 * center of what is drawn
-		 */
-		int x = e.getX() - 5;
-		int y = e.getY() - 5;
 		
-		/*PF: User presses invokes 
-		 * draw method in model and 
-		 * repaint method in view
+		/*PF: User presses and drags
+		 * invokes draw method in model 
+		 * and repaint method in view
 		 */
-		model.drawDragged(x, y);
-		//canvas.repaint(x, y, 10, 10);
+		model.draw(e.getX(), e.getY(), e.getID());
 		canvas.repaint();
 	}
 
