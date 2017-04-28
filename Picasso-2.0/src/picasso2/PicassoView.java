@@ -43,21 +43,6 @@ public class PicassoView extends JPanel {
 		 */
 		super.paintComponent(g);
 		
-		/*PF: Cast graphics to graphics 2D.
-		 * Graphics 2D is required to draw
-		 * and edit buffered images
-		 */
-//		Graphics2D g2 = (Graphics2D) g;
-		
-		/*PF: Set new size of View
-		 * to accommodate picture;
-		 */
-//		this.setPreferredSize(new Dimension(model.getBufferedImage().getWidth(), 
-//				model.getBufferedImage().getHeight()));
-		
-		//PF: Assign graphics 2D to BufferedImage in model
-//		g = model.getBufferedImage().getGraphics();
-		
 		//PF: Draw Buffered Image at (0,0)
 		g.drawImage(model.getBufferedImage(), 0, 0, null);
 	}

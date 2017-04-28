@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 public class PicassoModel {
 
 	private BufferedImage buffered_image;
+	private Graphics2D g2;
 	
 	public PicassoModel() {
 		
@@ -33,24 +34,31 @@ public class PicassoModel {
 		 * rectangle the size of the 
 		 * buffered image
 		 */
-		Graphics2D g2 = buffered_image.createGraphics();
+		g2 = buffered_image.createGraphics();
 		g2.setColor(Color.WHITE);
 		g2.fillRect(0, 0, buffered_image.getWidth(), buffered_image.getHeight());
 		g2.dispose();
 		
 	}
 	
+	//PF: Sets buffered image
 	public void setBufferedImage(BufferedImage new_buffered_image) {
 		buffered_image = new_buffered_image;
 		return;
 	}
 	
+	
+	//PF: Returns buffered image
 	public BufferedImage getBufferedImage() {
 		return buffered_image;
 	}
 
+	//PF: Method used to draw on the buffered image
 	public void draw(int x, int y) {
-		
+		g2 = buffered_image.createGraphics();
+		g2.setColor(Color.BLACK);
+		g2.fillOval(x, y, 10, 10);
+		g2.dispose();
 	}
 
 }
