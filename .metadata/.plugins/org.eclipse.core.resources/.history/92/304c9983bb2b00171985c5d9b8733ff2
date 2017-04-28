@@ -17,26 +17,20 @@ public class PicassoModel {
 	
 	public PicassoModel() {
 		
-		/*PF: Instantiate Plain 
-		 * White Buffered Image
-		 * Used as starting image 
-		 * when application opens
-		 * Note: Graphics2D and 
-		 * Graphics are similar,
-		 * however; Graphics2D support 
-		 * more complex drawing
+		/*PF: Instantiate Plain White Buffered Image
+		 * Used as starting image when application opens
+		 * Note: Graphics2D and Graphics are similar,
+		 * however; Graphics2D support more complex drawing
 		 */
 		buffered_image = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
 		
-		/*PF: To set the buffered image white,
-		 * used the graphics to draw a white
-		 * rectangle the size of the 
-		 * buffered image
+		/*PF: To set the buffered image white
+		 * used
 		 */
 		Graphics2D g2 = buffered_image.createGraphics();
 		g2.setColor(Color.WHITE);
 		g2.fillRect(0, 0, buffered_image.getWidth(), buffered_image.getHeight());
-		g2.dispose();
+		g2.close();
 		
 	}
 	

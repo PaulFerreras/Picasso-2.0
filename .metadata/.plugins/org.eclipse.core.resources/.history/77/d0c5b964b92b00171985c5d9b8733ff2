@@ -14,10 +14,6 @@ public class PicassoController implements MouseListener {
 	private PicassoView view;
 
 	public PicassoController(PicassoModel model, PicassoView view) {
-		/*PF: PicassoController gets model
-		 * and view, so user actions in
-		 * view can be used to edit the model.
-		 */
 		this.model = model;
 		this.view = view;
 		
@@ -44,7 +40,7 @@ public class PicassoController implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		model.draw(e.getX(), e.getY());
+		
 		
 	}
 

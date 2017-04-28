@@ -44,7 +44,7 @@ public class PicassoController implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		model.draw(e.getX(), e.getY());
+		model.draw(e.getX(), e.getY())
 		
 	}
 
