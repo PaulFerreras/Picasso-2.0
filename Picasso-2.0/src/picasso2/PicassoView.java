@@ -15,7 +15,9 @@ import javax.swing.JPanel;
 public class PicassoView extends JPanel {
 
 	private PicassoModel model;
-	private PicassoCanvas canvas;
+	private CanvasPanel canvas_panel;
+	private ToolPanel tool_panel;
+	private ColorSelectionPanel color_selection_panel;
 	
 	public PicassoView(PicassoModel model) {
 		
@@ -29,16 +31,16 @@ public class PicassoView extends JPanel {
 		 * buffered image (canvas),
 		 * color selection
 		 */
-		canvas = new PicassoCanvas(this.model);
-//		JPanel color_selection = new JPanel(new BorderLayout());
+		canvas_panel = new CanvasPanel(this.model);
+		tool_panel = new ToolPanel();
+		color_selection_panel = new ColorSelectionPanel();
 		
-		add(canvas, BorderLayout.CENTER);
-//		add(color_selection, BorderLayout.SOUTH);
+		add(canvas_panel, BorderLayout.CENTER);
 	}
 	
 	//PF: gets Canvas
-	public PicassoCanvas getPicassoCanvas() {
-		return canvas;
+	public CanvasPanel getPicassoCanvas() {
+		return canvas_panel;
 	}
 	
 }

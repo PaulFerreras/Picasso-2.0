@@ -1,9 +1,0 @@
-package picasso2;
-
-public class PicassoModel {
-
-	public PicassoModel() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

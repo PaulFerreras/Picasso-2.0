@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;picasso2.PicassoCanvas&apos; to &apos;CanvasPanel&apos;&#x0D;&#x0A;- Original project: &apos;Picasso-2.0&apos;&#x0D;&#x0A;- Original element: &apos;picasso2.PicassoCanvas&apos;&#x0D;&#x0A;- Renamed element: &apos;picasso2.CanvasPanel&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;PicassoCanvas&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;picasso2{PicassoCanvas.java[PicassoCanvas" matchStrategy="1" name="CanvasPanel" qualified="false" references="true" similarDeclarations="false" stamp="1493401573340" textual="false" version="1.0"/>
+</session>

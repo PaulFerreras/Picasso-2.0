@@ -13,7 +13,7 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 	
 	private PicassoModel model;
 	private PicassoView view;
-	private PicassoCanvas canvas;
+	private CanvasPanel canvas;
 
 	public PicassoController(PicassoModel model, PicassoView view) {
 		/*PF: PicassoController gets model

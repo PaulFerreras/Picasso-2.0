@@ -1,0 +1,13 @@
+package picasso2;
+
+import java.awt.LayoutManager;
+
+import javax.swing.JPanel;
+
+public class ToolPanel extends JPanel {
+
+	public ToolPanel() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
