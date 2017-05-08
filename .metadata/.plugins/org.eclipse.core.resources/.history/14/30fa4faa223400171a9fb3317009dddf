@@ -1,0 +1,13 @@
+package picasso2;
+
+import java.awt.LayoutManager;
+
+import javax.swing.JPanel;
+
+public class ResizableContainer extends JPanel {
+
+	public ResizableContainer() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

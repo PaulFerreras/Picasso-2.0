@@ -1,0 +1,8 @@
+package test;
+
+public interface NewObservable {
+
+	public void addObserver(NewObserver no);
+	public void notifyObserver();
+	
+}

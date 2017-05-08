@@ -1,0 +1,11 @@
+package test;
+
+import javax.swing.JPanel;
+
+abstract public class ObservableJPanel extends JPanel {
+
+	private void notifyObserver() {
+		
+	}
+	
+}

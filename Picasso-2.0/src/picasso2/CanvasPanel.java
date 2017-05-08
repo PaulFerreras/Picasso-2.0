@@ -18,16 +18,15 @@ public class CanvasPanel extends JPanel {
 	
 	public CanvasPanel(PicassoModel model) {
 		//PF: Set to BorderLayout
-		setLayout(new BorderLayout());
+//		setLayout(new BorderLayout());
 		
 		//PF: Set Border to Black Line Border
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		this.model = model;
 		
-		//PF: Initialize size as Buffered Image size
-		setPreferredSize(new Dimension(model.getBufferedImage().getWidth(), 
-				model.getBufferedImage().getHeight()));
+		//PF: Set bounds of Canvas
+		setBounds(0, 0, 300, 300);
 
 	}
 	

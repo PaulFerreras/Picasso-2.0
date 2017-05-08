@@ -31,7 +31,11 @@ public class PicassoMain {
 		//PF: Set View as ContentPane of MainFrame
 		main_frame.setContentPane(view);
 		
+		//PF: Set Frame to Maximized at start
+		main_frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+		
 		/*PF: Pack pushes everything together
+		 * (When screen is not maximized)
 		 *Mainframe set to visible 
 		 */
 		main_frame.pack();

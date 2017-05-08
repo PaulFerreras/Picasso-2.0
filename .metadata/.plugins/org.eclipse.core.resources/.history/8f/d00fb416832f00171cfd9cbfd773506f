@@ -1,0 +1,13 @@
+package test;
+
+import javax.swing.event.MouseInputAdapter;
+
+public class ResizeAndDragListener extends MouseInputAdapter {
+
+	private int top_inset, bottom_inset, left_inset, right_inset;
+	
+	public ResizeAndDragListener() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

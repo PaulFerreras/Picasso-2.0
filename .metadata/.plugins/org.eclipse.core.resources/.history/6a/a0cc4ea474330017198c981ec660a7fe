@@ -1,0 +1,11 @@
+package test;
+
+import javax.swing.JPanel;
+
+public abstract class ObservableJPanel extends JPanel {
+
+	public ObservableJPanel() {
+		
+	}
+	
+}

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
+<typeInfo handle="=Picasso-2.0/C:\/Program Files\/Java\/jre1.8.0_131\/lib\/rt.jar&lt;javax.swing.border(Border.class[Border" modifiers="1537" timestamp="1493241244870"/>
+<typeInfo handle="=Paint Test/C:\/Program Files\/Java\/jre1.8.0_131\/lib\/rt.jar&lt;java.awt.event(MouseMotionListener.class[MouseMotionListener" modifiers="1537" timestamp="1493241244870"/>
+<typeInfo handle="=Paint Test/C:\/Program Files\/Java\/jre1.8.0_131\/lib\/rt.jar&lt;java.awt.event(MouseListener.class[MouseListener" modifiers="1537" timestamp="1493241244870"/>
+<typeInfo handle="=Paint Test/C:\/Program Files\/Java\/jre1.8.0_131\/lib\/rt.jar&lt;javax.swing.event(MouseInputListener.class[MouseInputListener" modifiers="1537" timestamp="1493241244870"/>
+<typeInfo handle="=Paint Test/C:\/Program Files\/Java\/jre1.8.0_131\/lib\/rt.jar&lt;javax.swing.event(MouseInputAdapter.class[MouseInputAdapter" modifiers="1057" timestamp="1493241244870"/>
+<typeInfo handle="=Paint Test/C:\/Program Files\/Java\/jre1.8.0_131\/lib\/rt.jar&lt;java.util(Observer.class[Observer" modifiers="1537" timestamp="1493241244870"/>
 <typeInfo handle="=Picasso-2.0/C:\/Program Files\/Java\/jre1.8.0_131\/lib\/rt.jar&lt;javax.swing(JPanel.class[JPanel" modifiers="33" timestamp="1493241244870"/>
 </typeInfoHistroy>
