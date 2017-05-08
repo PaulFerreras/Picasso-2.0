@@ -21,13 +21,10 @@ public class CanvasPanel extends JPanel {
 		//PF: Set to BorderLayout
 //		setLayout(new BorderLayout());
 		
-//		resizable_canvas_border = new ResizableCanvasBorder();
-//		
-//		//PF: Set Border to Black Line Border
-//		setBorder(resizable_canvas_border);
+		resizable_canvas_border = new ResizableCanvasBorder();
 		
 		//PF: Set Border to Black Line Border
-		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		setBorder(resizable_canvas_border);
 		
 		this.model = model;
 		
@@ -50,7 +47,7 @@ public class CanvasPanel extends JPanel {
 		super.paintComponent(g);
 		
 		//PF: Draw Buffered Image at (0,0)
-		g.drawImage(model.getBufferedImage(), 0, 0, null);
+		g.drawImage(model.getBufferedImage(), 0, 0, getWidth() - 10, getHeight() - 10, null);
 	}
 
 }

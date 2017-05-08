@@ -1,0 +1,13 @@
+package picasso2;
+
+import java.awt.LayoutManager;
+
+import javax.swing.JPanel;
+
+public class CanvasContainer extends JPanel {
+	
+	public CanvasContainer(LayoutManager lm) {
+		super(lm);
+		
+	}
+}

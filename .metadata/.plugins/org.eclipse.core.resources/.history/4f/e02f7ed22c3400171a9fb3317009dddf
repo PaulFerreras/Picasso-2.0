@@ -1,0 +1,10 @@
+package picasso2;
+
+import javax.swing.JPanel;
+
+public class CanvasContainer extends JPanel {
+	
+	public CanvasContainer() {
+		
+	}
+}

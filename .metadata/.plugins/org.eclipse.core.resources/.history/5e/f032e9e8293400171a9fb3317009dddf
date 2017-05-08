@@ -21,18 +21,15 @@ public class CanvasPanel extends JPanel {
 		//PF: Set to BorderLayout
 //		setLayout(new BorderLayout());
 		
-//		resizable_canvas_border = new ResizableCanvasBorder();
-//		
-//		//PF: Set Border to Black Line Border
-//		setBorder(resizable_canvas_border);
+		resizable_canvas_border = new ResizableCanvasBorder();
 		
 		//PF: Set Border to Black Line Border
-		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		setBorder(resizable_canvas_border);
 		
 		this.model = model;
 		
 		//PF: Set bounds of Canvas
-		setBounds(0, 0, 300, 300);
+		setBounds(10, 10, 300, 300);
 
 	}
 	

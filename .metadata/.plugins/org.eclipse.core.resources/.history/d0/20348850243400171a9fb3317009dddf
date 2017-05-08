@@ -15,16 +15,10 @@ import javax.swing.border.Border;
 public class CanvasPanel extends JPanel {
 	
 	private PicassoModel model;
-	private ResizableCanvasBorder resizable_canvas_border;
 	
 	public CanvasPanel(PicassoModel model) {
 		//PF: Set to BorderLayout
 //		setLayout(new BorderLayout());
-		
-//		resizable_canvas_border = new ResizableCanvasBorder();
-//		
-//		//PF: Set Border to Black Line Border
-//		setBorder(resizable_canvas_border);
 		
 		//PF: Set Border to Black Line Border
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
