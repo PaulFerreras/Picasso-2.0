@@ -1,0 +1,84 @@
+package picasso2;
+
+import java.awt.BorderLayout;
+import java.awt.LayoutManager;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+/*PF: This is the UI of the program.
+ * This is what the user sees and
+ * interacts with.
+ */
+
+public class PicassoView extends JPanel {
+
+	private PicassoModel model;
+	private CanvasPanel canvas_panel;
+	
+	public PicassoView(PicassoModel model) {
+		
+		//PF: Set Layout to BorderLayout
+		setLayout(new BorderLayout());
+		
+		//PF: Set preferred size
+		setPreferredSize(new Dimension(500, 500));
+		
+		//PF: Set model to Picasso Model
+		this.model = model;
+		
+		/*PF: Create JPanels for the
+		 * canvas and toolbar ui container,
+		 * buffered image (canvas)
+		 * canvas container
+		 */
+		JPanel canvas_and_toolbar_ui_container = new JPanel(new BorderLayout());
+		canvas_panel = new CanvasPanel(this.model);
+		CanvasContainer canvas_container = new CanvasContainer(canvas_panel);
+		
+		/*PF: Create JScrollPane with 
+		 * canvas container as the viewport
+		 * Set vertical and horizontal 
+		 * scrollbars to always visible
+		 */
+		JScrollPane scroll_pane = new JScrollPane(canvas_container, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		/*PF: Set JScrollPane's preferred
+		 * size to view's width and height
+		 */
+		scroll_pane.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));
+		
+		//PF: JPanels are added together
+		add(canvas_and_toolbar_ui_container, BorderLayout.CENTER);
+		
+				/*PF: **NOTE** JScrollPane is added 
+				 * here NOT canvas container
+				 * as canvas container is the 
+				 * viewport of JScrollPane
+				 */
+		canvas_and_toolbar_ui_container.add(scroll_pane, BorderLayout.CENTER);
+		
+		//PF: Canvas adds CanvasContainer as an observer
+		canvas_panel.addObserver(canvas_container);
+	}
+	
+	//PF: gets Canvas
+	public CanvasPanel getPicassoCanvas() {
+		return canvas_panel;
+	}
+	
+	@Override
+	public void repaint() {
+		super.repaint();
+		
+		System.out.println(this.getWidth());
+		System.out.println(this.getHeight());
+		System.out.println(scroll_pane.getViewport().getWidth());
+		System.out.println(scroll_pane.getViewport().getHeight());
+	}
+	
+}

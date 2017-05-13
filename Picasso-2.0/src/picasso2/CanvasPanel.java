@@ -10,30 +10,31 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-//PF: This is where the actual buffered image is rendered
+/*PF: This is where the actual buffered image is rendered
+ * Observable to CanvasConainer
+ */
 
-public class CanvasPanel extends JPanel {
+public class CanvasPanel extends JPanel implements NewObservable {
 	
 	private PicassoModel model;
-	private ResizableCanvasBorder resizable_canvas_border;
+	private NewObserver observer;
 	
 	public CanvasPanel(PicassoModel model) {
-		//PF: Set to BorderLayout
-//		setLayout(new BorderLayout());
+		//PF: Set bounds of Canvas
+		setBounds(0, 0, 300, 300);
 		
-//		resizable_canvas_border = new ResizableCanvasBorder();
-//		
-//		//PF: Set Border to Black Line Border
-//		setBorder(resizable_canvas_border);
+		//PF: Set MinimumSize of Canvas
+		setMinimumSize(new Dimension(100, 100));
 		
 		//PF: Set Border to Black Line Border
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
+		//PF: Store model in internal private variable
 		this.model = model;
 		
-		//PF: Set bounds of Canvas
-		setBounds(0, 0, 300, 300);
-
+		//PF: Set observer to null
+		observer = null;
+		
 	}
 	
 	/*PF: This is the function called 
@@ -52,5 +53,57 @@ public class CanvasPanel extends JPanel {
 		//PF: Draw Buffered Image at (0,0)
 		g.drawImage(model.getBufferedImage(), 0, 0, null);
 	}
+	
+	/*PF: Returns the location of the left-side 
+	 * of the canvas based off its container
+	 */
+	public int getLeftSide() {
+		return getLocation().x;
+	}
 
+	/*PF: Returns the location of the top-side 
+	 * of the canvas based off its container
+	 */
+	public int getTopSide() {
+		return getLocation().y;
+	}
+	
+	/*PF: Returns the location of the right-side 
+	 * of the canvas based off its container
+	 */
+	public int getRightSide() {
+		return getLocation().x + getWidth();
+	}
+	
+	/*PF: Returns the location of the bottom-side 
+	 * of the canvas based off its container
+	 */
+	public int getBottomSide() {
+		return getLocation().y + getHeight();
+	}
+
+	//PF: Adds NewObserver into internal private variable observer
+	@Override
+	public void addObserver(NewObserver o) {
+		observer = o;
+	}
+
+	//PF: Notifies the observer
+	@Override
+	public void notifyObserver() {
+		observer.update();
+	}
+	
+	/*PF: Sets Bounds for CanvasPanel
+	 * Overridden to notify observer (Canvas Container)
+	 * when resized for JScrollPane to update
+	 */
+	@Override
+	public void setBounds(int x, int y, int width, int height) {
+		//PF: Delegates method to super class
+		super.setBounds(x, y, width, height);
+		
+		//PF: Notifies observers when observer is non-null
+		if (observer != null) notifyObserver();
+	}
 }

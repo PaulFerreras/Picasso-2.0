@@ -1,0 +1,199 @@
+package picasso2;
+
+import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+
+import javax.swing.event.MouseInputAdapter;
+
+//PF: This is the ResizeListener that allows CanvasPanel to be resized
+
+public class ResizeListener extends MouseInputAdapter {
+
+	private CanvasContainer canvas_container;
+	private CanvasPanel canvas_panel;
+	private int canvas_width, canvas_height, canvas_min_width, canvas_min_height,
+				top_inset, bottom_inset, right_inset, left_inset;
+	
+	public ResizeListener(CanvasContainer cc, CanvasPanel cp, 
+			int top_inset, int bottom_inset, int left_inset, int right_inset) {
+		/*PF: Store Canvas Container and Canvas Panel
+		 * in private internal variables
+		 */
+		canvas_container = cc;
+		canvas_panel = cp;
+		
+		/*PF: Get and store canvas width, 
+		 * height, min_width, min_height in 
+		 * internal private variables
+		 */
+		canvas_width = canvas_panel.getWidth();
+		canvas_height = canvas_panel.getHeight();
+		canvas_min_width = (int) canvas_panel.getMinimumSize().getWidth();
+		canvas_min_height = (int) canvas_panel.getMinimumSize().getHeight();
+		
+		/*PF: Store top, bottom, left, right insets
+		 * **NOTE** Insets are empty spaces 
+		 * around Canvas where the 
+		 * cursor can resize Canvas 
+		 * (where cursor turns into resize cursors)
+		 */
+		this.top_inset = top_inset;
+		this.bottom_inset = bottom_inset;
+		this.left_inset = left_inset;
+		this.right_inset = right_inset;
+	}
+	
+	/*PF: When the mouse is moved
+	 * over the bottom, right, or
+	 * bottom-right part of canvas
+	 * the mouse turns to a resize cursor
+	 */
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		canvas_container.setCursor(this.getCursor(e.getX(), e.getY()));
+	}
+
+	/*PF: Returns the appropriate 
+	 * resize cursor based off of
+	 * the side or corner 
+	 * the mouse is on
+	 */
+	private Cursor getCursor(int x, int y) {
+		
+		//PF:EAST RESIZE CURSOR
+		if(y <= canvas_height 
+				&& x > canvas_width && x <= canvas_width + right_inset) {
+			return Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR);
+		}
+		
+		//PF:SOUTH RESIZE CURSOR
+		if(x <= canvas_width 
+				&& y > canvas_height && y <= canvas_height + bottom_inset) {
+			return Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR);
+		}
+		
+		//PF:SOUTH-EAST RESIZE CURSOR
+		if(x > canvas_width && x <= canvas_width + right_inset
+				&& y > canvas_height && y <= canvas_height + bottom_inset) {
+			return Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR);
+		}
+		
+		return Cursor.getDefaultCursor();
+	}
+	
+	/*PF: Start Point is instantiated.
+	 * It is used as the beginning point
+	 * of mouseDragged to determine
+	 * how far to resize the canvas
+	 */
+	private Point start_point = null;
+	
+	//PF: When mouse is pressed, start_point is set
+	@Override
+	public void mousePressed(MouseEvent e) {
+		start_point = e.getPoint();
+	}
+	
+	//PF: Right Side and Bottom
+	private int right_side, bottom_side,
+				x, y, w, h, 
+				dx, dy;
+	
+	
+	//PF: When mouse is dragged, CanvasPanel is resized
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		
+		//PF: Checks if cursor is not the default cursor
+		if(canvas_container.getCursor() != Cursor.getDefaultCursor()) {
+			
+			//PF: Variables X, Y, W, and H are set (reset)
+			x = canvas_panel.getX();
+			y = canvas_panel.getY();
+			w = canvas_panel.getWidth();
+			h = canvas_panel.getHeight();
+
+			//PF: CanvasPanel's Right_Side and BottomSide are set (reset)
+			right_side = canvas_panel.getRightSide();
+			bottom_side = canvas_panel.getBottomSide();
+			
+			/*PF: Movement of cursor from start point is calculated
+			 * This is used to determine how much and what direction
+			 * the canvas_panel is being resized
+			 */
+			dx = e.getX() - start_point.x;
+			dy = e.getY() - start_point.y;
+
+			//PF: Determines which resize cursor is currently being used
+			switch(canvas_container.getCursor().getType()) {
+
+			//PF: E_RESIZE CURSOR
+			case Cursor.E_RESIZE_CURSOR:
+				if(w + dx <= canvas_min_width) {
+					w = canvas_min_width;
+					start_point.setLocation(canvas_min_width - right_inset, start_point.y);
+				} else {
+					w += dx;
+					start_point.setLocation(e.getX(), start_point.y);
+				}
+
+				break;
+
+			//PF: S_RESIZE CURSOR	
+			case Cursor.S_RESIZE_CURSOR:
+				if(h + dy <= canvas_min_height) {
+					h = canvas_min_height;
+					start_point.setLocation(start_point.x, canvas_min_height - bottom_inset);
+				} else {
+					h += dy;
+					start_point.setLocation(start_point.x, e.getY());
+				}
+
+				break;			
+
+			//PF: SE_RESIZE CURSOR	
+			case Cursor.SE_RESIZE_CURSOR:
+				if(w + dx <= canvas_min_width) {
+					w = canvas_min_width;
+					start_point.setLocation(canvas_min_width - right_inset, start_point.y);
+				} else {
+					w += dx;
+					start_point.setLocation(e.getX(), start_point.y);
+				}
+
+				if(h + dy <= canvas_min_height) {
+					h = canvas_min_height;
+					start_point.setLocation(start_point.x, canvas_min_height - bottom_inset);
+				} else {
+					h += dy;
+					start_point.setLocation(start_point.x, e.getY());
+				}
+
+				break;
+			}
+
+			setBounds(x, y, w, h);
+		}
+	}
+	
+	/*PF: Set bounds method in CanvasPanel is called,
+	 * canvas_container is revalidated
+	 * **NOTE** Might need to revalidate 
+	 * PicassoView (highest container) instead
+	 */
+	private void setBounds(int x, int y, int w, int h) {
+		canvas_panel.setBounds(x, y, w, h);
+		canvas_container.revalidate();
+	}
+	
+	/*PF: When canvas is resized
+	 * (mouse is released)
+	 * new Canvas width and height
+	 * are gotten and stored
+	 */
+	public void mouseReleased(MouseEvent e) {
+		canvas_width = canvas_panel.getWidth();
+		canvas_height = canvas_panel.getHeight();
+	}
+}

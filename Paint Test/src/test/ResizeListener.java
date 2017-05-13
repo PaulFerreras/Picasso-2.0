@@ -152,7 +152,7 @@ public class ResizeListener implements MouseInputListener {
 				
 				if(h + dy <= min_height) {
 					h = min_height;
-					start_point.setLocation(start_point.x, min_height - top_inset);
+					start_point.setLocation(start_point.x, min_height - bottom_inset);
 				} else {
 					h += dy;
 					start_point.setLocation(start_point.x, e.getY());
@@ -164,7 +164,7 @@ public class ResizeListener implements MouseInputListener {
 			case Cursor.S_RESIZE_CURSOR:
 				if(h + dy <= min_height) {
 					h = min_height;
-					start_point.setLocation(start_point.x, min_height - top_inset);
+					start_point.setLocation(start_point.x, min_height - bottom_inset);
 				} else {
 					h += dy;
 					start_point.setLocation(start_point.x, e.getY());
@@ -184,7 +184,7 @@ public class ResizeListener implements MouseInputListener {
 				
 				if(h + dy <= min_height) {
 					h = min_height;
-					start_point.setLocation(start_point.x, min_height - top_inset);
+					start_point.setLocation(start_point.x, min_height - bottom_inset);
 				} else {
 					h +=dy;
 					start_point.setLocation(start_point.x, e.getY());
