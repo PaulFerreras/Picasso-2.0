@@ -37,7 +37,7 @@ public class PicassoMain {
 		//main_frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		
 		//PF: Set minimum size for Frame
-		main_frame.setMinimumSize(new Dimension(350, 400));
+		main_frame.setMinimumSize(new Dimension(350, 350));
 		
 		/*PF: Pack pushes everything together
 		 * (When screen is not maximized)
