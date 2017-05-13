@@ -107,6 +107,5 @@ public class CanvasPanel extends JPanel implements NewObservable {
 		if (observer != null) notifyObserver();
 		
 		System.out.println("Width: " + getWidth());
-		System.out.println("Height: " + getHeight());
 	}
 }

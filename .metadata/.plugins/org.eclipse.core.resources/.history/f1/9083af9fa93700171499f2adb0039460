@@ -21,7 +21,7 @@ public class CanvasPanel extends JPanel implements NewObservable {
 	
 	public CanvasPanel(PicassoModel model) {
 		//PF: Set bounds of Canvas
-		setBounds(0, 0, 300, 300);
+		setBounds(0, 0, 800, 500);
 		
 		//PF: Set MinimumSize of Canvas
 		setMinimumSize(new Dimension(100, 100));
@@ -105,8 +105,5 @@ public class CanvasPanel extends JPanel implements NewObservable {
 		
 		//PF: Notifies observers when observer is non-null
 		if (observer != null) notifyObserver();
-		
-		System.out.println("Width: " + getWidth());
-		System.out.println("Height: " + getHeight());
 	}
 }
