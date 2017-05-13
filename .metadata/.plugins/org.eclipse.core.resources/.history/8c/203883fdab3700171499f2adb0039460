@@ -112,9 +112,6 @@ public class ResizeListener extends MouseInputAdapter {
 		//PF: Checks if cursor is not the default cursor
 		if(canvas_container.getCursor() != Cursor.getDefaultCursor()) {
 			
-			System.out.println("e.getX(): " + e.getX());
-			System.out.println("e.getY();" + e.getY());
-			
 			//PF: Variables X, Y, W, and H are set (reset)
 			x = canvas_panel.getX();
 			y = canvas_panel.getY();

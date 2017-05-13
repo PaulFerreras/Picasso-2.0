@@ -26,9 +26,6 @@ public class CanvasPanel extends JPanel implements NewObservable {
 		//PF: Set MinimumSize of Canvas
 		setMinimumSize(new Dimension(100, 100));
 		
-		//PF: Set MaximumSize of Canvas
-		setMaximumSize(new Dimension(2000, 2000));
-		
 		//PF: Set Border to Black Line Border
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
@@ -109,7 +106,7 @@ public class CanvasPanel extends JPanel implements NewObservable {
 		//PF: Notifies observers when observer is non-null
 		if (observer != null) notifyObserver();
 		
-//		System.out.println("Width: " + getWidth());
-//		System.out.println("Height: " + getHeight());
+		System.out.println("Width: " + getWidth());
+		System.out.println("Height: " + getHeight());
 	}
 }

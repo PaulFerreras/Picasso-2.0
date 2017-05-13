@@ -12,9 +12,7 @@ public class ResizeListener extends MouseInputAdapter {
 
 	private CanvasContainer canvas_container;
 	private CanvasPanel canvas_panel;
-	private int canvas_width, canvas_height, 
-				canvas_min_width, canvas_min_height,
-				canvas_max_width, canvas_max_height,
+	private int canvas_width, canvas_height, canvas_min_width, canvas_min_height,
 				top_inset, bottom_inset, right_inset, left_inset;
 	
 	public ResizeListener(CanvasContainer cc, CanvasPanel cp, 
@@ -33,8 +31,6 @@ public class ResizeListener extends MouseInputAdapter {
 		canvas_height = canvas_panel.getHeight();
 		canvas_min_width = (int) canvas_panel.getMinimumSize().getWidth();
 		canvas_min_height = (int) canvas_panel.getMinimumSize().getHeight();
-		canvas_max_width = (int) canvas_panel.getMaximumSize().getWidth();
-		canvas_max_height = (int) canvas_panel.getMaximumSize().getHeight();
 		
 		/*PF: Store top, bottom, left, right insets
 		 * **NOTE** Insets are empty spaces 
@@ -112,9 +108,6 @@ public class ResizeListener extends MouseInputAdapter {
 		//PF: Checks if cursor is not the default cursor
 		if(canvas_container.getCursor() != Cursor.getDefaultCursor()) {
 			
-			System.out.println("e.getX(): " + e.getX());
-			System.out.println("e.getY();" + e.getY());
-			
 			//PF: Variables X, Y, W, and H are set (reset)
 			x = canvas_panel.getX();
 			y = canvas_panel.getY();
@@ -140,10 +133,10 @@ public class ResizeListener extends MouseInputAdapter {
 			//PF: E_RESIZE CURSOR
 			case Cursor.E_RESIZE_CURSOR:
 				
-				//PF: Checks to see if Canvas min width is reached
+				//PF: Checks to see if Canvas min_width is reached
 				if(w + dx < canvas_min_width) {
 					
-					//PF: If so, the width is set to the min width
+					//PF: If so, the width is simply set to the min_width
 					w = canvas_min_width;
 					
 					/*PF: And the start_point is now set 
@@ -154,25 +147,9 @@ public class ResizeListener extends MouseInputAdapter {
 					 * surpasses the CanvasPanel's right edge
 					 */
 					start_point.setLocation(canvas_min_width, start_point.y);
-					
-				//PF: Checks to see if Canvas max width is reached
-				} else if(w + dx > canvas_max_width) {
-					
-					//PF: If so, the width is set to the max width
-					w = canvas_max_width;
-					
-					/*PF: And the start_point is now set 
-					 * to the right edge of the CanvasPanel
-					 * (y value does not matter as much)
-					 * **NOTE** This prevents the cursor
-					 * from resizing the CanvasPanel until it
-					 * surpasses the CanvasPanel's right edge
-					 */
-					start_point.setLocation(canvas_max_width, start_point.y);
-					
 				} else {
 					
-					//PF: If neither, the width is added by the change in x
+					//PF: If not, the width is added by the change in x
 					w += dx;				//w = w + dx;
 					
 					//PF: Start Point is reset
@@ -186,9 +163,6 @@ public class ResizeListener extends MouseInputAdapter {
 				if(h + dy < canvas_min_height) {
 					h = canvas_min_height;
 					start_point.setLocation(start_point.x, canvas_min_height);
-				} else if(h + dy > canvas_max_height) {
-					h = canvas_max_height;
-					start_point.setLocation(start_point.x, canvas_min_height);
 				} else {
 					h += dy;
 					start_point.setLocation(start_point.x, e.getY());
@@ -201,9 +175,6 @@ public class ResizeListener extends MouseInputAdapter {
 				if(w + dx < canvas_min_width) {
 					w = canvas_min_width;
 					start_point.setLocation(canvas_min_width, start_point.y);
-				} else if(w + dx > canvas_max_width) {
-					w = canvas_max_width;
-					start_point.setLocation(canvas_max_width, start_point.y);
 				} else {
 					w += dx;
 					start_point.setLocation(e.getX(), start_point.y);
@@ -211,9 +182,6 @@ public class ResizeListener extends MouseInputAdapter {
 
 				if(h + dy < canvas_min_height) {
 					h = canvas_min_height;
-					start_point.setLocation(start_point.x, canvas_min_height);
-				}  else if(h + dy > canvas_max_height) {
-					h = canvas_max_height;
 					start_point.setLocation(start_point.x, canvas_min_height);
 				} else {
 					h += dy;
