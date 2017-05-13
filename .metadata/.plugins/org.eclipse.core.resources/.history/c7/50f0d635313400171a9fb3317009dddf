@@ -1,0 +1,33 @@
+package picasso2;
+
+import java.awt.LayoutManager;
+
+import javax.swing.JPanel;
+
+/*PF: This is the container that holds Canvas
+ * **NOTE** This is also the viewport for JScrollPane
+ */
+
+public class CanvasContainer extends JPanel {
+	
+	private CanvasPanel canvas_panel;
+	
+	public CanvasContainer(CanvasPanel cp) {
+		/*PF: Set Layout to null to 
+		 * allow for resizing Canvas
+		 */
+		setLayout(null);
+		
+		//PF: Save Canvas into a variable
+		canvas_panel = cp;
+		
+		//PF: Add Canvas to container
+		this.add(canvas_panel);
+		
+	}
+	
+	@Override
+	public void paintComponent(Graphics g){
+		
+	}
+}

@@ -31,15 +31,13 @@ public class PicassoView extends JPanel {
 		 * buffered image (canvas)
 		 */
 		JPanel canvas_and_toolbar_ui_container = new JPanel(new BorderLayout());
-		ResizableCanvas resizable_canvas_container = new ResizableCanvas(new BorderLayout());
 		canvas_panel = new CanvasPanel(this.model);
+		CanvasContainer canvas_container = new CanvasContainer(canvas_panel);
 		
 		//PF: JPanels are added together
 		add(canvas_and_toolbar_ui_container, BorderLayout.CENTER);
 		
-		canvas_and_toolbar_ui_container.add(resizable_canvas_container, BorderLayout.CENTER);
-		
-		resizable_canvas_container.add(canvas_panel, BorderLayout.CENTER);
+		canvas_and_toolbar_ui_container.add(canvas_container, BorderLayout.CENTER);
 	}
 	
 	//PF: gets Canvas
