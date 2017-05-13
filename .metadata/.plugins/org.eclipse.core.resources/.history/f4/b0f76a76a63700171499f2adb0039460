@@ -110,9 +110,7 @@ public class CanvasContainer extends JPanel implements NewObserver {
 	public void update() {
 		/*PF: Every time Canvas is resized, 
 		 * the preferred size is reset to the
-		 * width and height of Canvas + the SE
-		 * resize circle to allow resizing
-		 * no matter the size of the viewport
+		 * width and height of Canvas
 		 */
 		setPreferredSize(new Dimension(canvas_panel.getWidth() + se_circle_radius, 
 				canvas_panel.getHeight() + se_circle_radius));

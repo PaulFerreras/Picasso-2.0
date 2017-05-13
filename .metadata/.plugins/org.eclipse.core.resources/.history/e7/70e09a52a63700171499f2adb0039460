@@ -44,9 +44,7 @@ public class CanvasContainer extends JPanel implements NewObserver {
 		se_circle_colordraw = Color.BLACK;
 		
 		/*PF: Set preferred size to canvas
-		 * width and height + the SE
-		 * resize circle to always allow
-		 * resizing
+		 * width and height
 		 * **NOTE** The preferred size is
 		 * only used as a reference for
 		 * JScrollPane's scrollbars.
@@ -110,9 +108,7 @@ public class CanvasContainer extends JPanel implements NewObserver {
 	public void update() {
 		/*PF: Every time Canvas is resized, 
 		 * the preferred size is reset to the
-		 * width and height of Canvas + the SE
-		 * resize circle to allow resizing
-		 * no matter the size of the viewport
+		 * width and height of Canvas
 		 */
 		setPreferredSize(new Dimension(canvas_panel.getWidth() + se_circle_radius, 
 				canvas_panel.getHeight() + se_circle_radius));
