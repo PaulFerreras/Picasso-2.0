@@ -17,7 +17,7 @@ public class PicassoView extends JPanel {
 
 	private PicassoModel model;
 	private CanvasPanel canvas_panel;
-	private PicassoScrollPane scroll_pane;
+	private JScrollPane scroll_pane;
 	
 	public PicassoView(PicassoModel model) {
 		
@@ -46,7 +46,27 @@ public class PicassoView extends JPanel {
 		 * container's width and height when
 		 * PicassoView gets resized
 		 */
-		scroll_pane = new PicassoScrollPane(canvas_container);
+		scroll_pane = new JScrollPane(canvas_container, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		/*PF: Set new unit increments for 
+		 * Vertical and Horizontal scroll bars
+		 * This changes how quickly the scroll bar
+		 * scrolls when pressing the arrows
+		 * or scrolling the mouse wheel 
+		 */
+		scroll_pane.getVerticalScrollBar().setUnitIncrement(7);
+		scroll_pane.getHorizontalScrollBar().setUnitIncrement(7);
+		
+		/*PF: Set new block increments for
+		 * Vertical and Horizontal scroll bars
+		 * This changes how quickly the scroll bar
+		 * scrolls when pressing on the track
+		 * (area the slider is not on)
+		 */
+		scroll_pane.getVerticalScrollBar().setBlockIncrement(300);
+		scroll_pane.getHorizontalScrollBar().setBlockIncrement(300);
 		
 		//PF: JPanels are added together
 		add(canvas_and_toolbar_ui_container, BorderLayout.CENTER);

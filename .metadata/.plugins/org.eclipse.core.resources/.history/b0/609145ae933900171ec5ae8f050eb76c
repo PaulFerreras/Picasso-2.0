@@ -17,7 +17,7 @@ public class PicassoView extends JPanel {
 
 	private PicassoModel model;
 	private CanvasPanel canvas_panel;
-	private PicassoScrollPane scroll_pane;
+	private JScrollPane scroll_pane;
 	
 	public PicassoView(PicassoModel model) {
 		
@@ -46,7 +46,9 @@ public class PicassoView extends JPanel {
 		 * container's width and height when
 		 * PicassoView gets resized
 		 */
-		scroll_pane = new PicassoScrollPane(canvas_container);
+		scroll_pane = new JScrollPane(canvas_container, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		
 		//PF: JPanels are added together
 		add(canvas_and_toolbar_ui_container, BorderLayout.CENTER);
