@@ -102,24 +102,33 @@ public class CanvasContainer extends JPanel implements NewObserver {
 		g.drawOval(se_circle_x, se_circle_y, se_circle_radius, se_circle_radius);
 	}
 
-	/*PF: This is an observer of Canvas
-	 * Its preferred size is set to the width and height
-	 * of canvas. Therefore, every time Canvas is resized
-	 * this method is called
-	 */
+//	/*PF: This is an observer of Canvas
+//	 * Its preferred size is set to the width and height
+//	 * of canvas. Therefore, every time Canvas is resized
+//	 * this method is called
+//	 */
 	public void update() {
-		/*PF: Every time Canvas is resized, 
-		 * the preferred size is reset to the
-		 * width and height of Canvas + the SE
-		 * resize circle to allow resizing
-		 * no matter the size of the viewport
-		 */
-		setPreferredSize(new Dimension(canvas_panel.getWidth() + se_circle_radius, 
-				canvas_panel.getHeight() + se_circle_radius));
-		
-		/*PF: Need to revalidate for JScrollPane to 
-		 * reference the new preferred size
-		 */
-		revalidate();
+//		System.out.println("Canvas Width: " + canvas_panel.getWidth());
+//		System.out.println("Width: " + getWidth());
+//		System.out.println("Canvas Height: " + canvas_panel.getHeight());
+//		System.out.println("Height: " + getHeight());
+//		System.out.println();
+//		
+//		
+//		/*PF: Every time Canvas is resized, 
+//		 * the preferred size is reset to the
+//		 * width and height of Canvas + the SE
+//		 * resize circle to allow resizing
+//		 * no matter the size of the viewport
+//		 */
+////		if(canvas_panel.getWidth() >= getWidth() && canvas_panel.getHeight() >= getHeight()) {
+//		setPreferredSize(new Dimension(canvas_panel.getWidth() + se_circle_radius, 
+//				canvas_panel.getHeight() + se_circle_radius));
+//		
+//		/*PF: Need to revalidate for JScrollPane to 
+//		 * reference the new preferred size
+//		 */
+//		revalidate();
+////		}
 	}
 }
