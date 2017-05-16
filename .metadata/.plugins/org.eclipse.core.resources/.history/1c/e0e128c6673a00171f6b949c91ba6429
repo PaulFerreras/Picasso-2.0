@@ -1,0 +1,12 @@
+package picasso2;
+
+import javax.swing.JToolBar;
+
+public class PicassoToolBar extends JToolBar {
+
+	public PicassoToolBar(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+	
+}

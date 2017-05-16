@@ -1,7 +1,0 @@
-package test;
-
-public interface NewObserver {
-
-	public void update(ObservableJPanel);
-	
-}

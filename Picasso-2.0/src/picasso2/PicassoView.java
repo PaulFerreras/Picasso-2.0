@@ -48,8 +48,12 @@ public class PicassoView extends JPanel {
 		 */
 		scroll_pane = new PicassoScrollPane(canvas_container);
 		
+		//PF: Create PicassoToolBar
+		PicassoToolBar tool_bar = new PicassoToolBar("ToolBar");
+		
 		//PF: JPanels are added together
 		add(canvas_and_toolbar_ui_container, BorderLayout.CENTER);
+		add(tool_bar, BorderLayout.PAGE_START);
 		
 				/*PF: **NOTE** JScrollPane is added 
 				 * here NOT canvas container
