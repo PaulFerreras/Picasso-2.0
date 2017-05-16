@@ -44,10 +44,4 @@ public class PicassoButtonPanel extends JPanel implements NewObserver {
 			this.add(new_button);
 		}
 	}
-
-	@Override
-	public void update(Object obj) {
-		// TODO Auto-generated method stub
-		
-	}
 }

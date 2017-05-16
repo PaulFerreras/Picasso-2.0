@@ -93,24 +93,20 @@ public class CanvasPanel extends JPanel implements NewObservable {
 
 	//PF: Notifies the observer
 	@Override
-	public void notifyObserver(Object obj) {
-		observer.update(obj);
+	public void notifyObserver() {
+		observer.update();
 	}
 	
 	/*PF: Sets Bounds for CanvasPanel
 	 * Overridden to notify observer (Canvas Container)
-	 * when resized so that JScrollPane can update
+	 * when resized for JScrollPane to update
 	 */
 	@Override
 	public void setBounds(int x, int y, int width, int height) {
 		//PF: Delegates method to super class
 		super.setBounds(x, y, width, height);
 		
-		/*PF: Notifies observer, but only 
-		 * when observer is non-null
-		 * Parameter is null because
-		 * does not need to update with any info
-		 */
-		if (observer != null) notifyObserver(null);
+		//PF: Notifies observers when observer is non-null
+		if (observer != null) notifyObserver();
 	}
 }

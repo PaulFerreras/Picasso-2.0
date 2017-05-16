@@ -107,7 +107,7 @@ public class CanvasContainer extends JPanel implements NewObserver {
 //	 * of canvas. Therefore, every time Canvas is resized
 //	 * this method is called
 //	 */
-	public void update(Object obj) {
+	public void update() {
 //		System.out.println("Canvas Width: " + canvas_panel.getWidth());
 //		System.out.println("Width: " + getWidth());
 //		System.out.println("Canvas Height: " + canvas_panel.getHeight());

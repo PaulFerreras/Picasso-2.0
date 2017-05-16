@@ -68,8 +68,8 @@ public class PicassoToolBar extends JToolBar implements NewObservable {
 
 
 	@Override
-	public void notifyObserver(Object obj) {
-		observer.update(obj);
+	public void notifyObserver() {
+		observer.update();
 		
 	}
 	

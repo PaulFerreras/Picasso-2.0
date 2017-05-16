@@ -93,8 +93,8 @@ public class CanvasPanel extends JPanel implements NewObservable {
 
 	//PF: Notifies the observer
 	@Override
-	public void notifyObserver(Object obj) {
-		observer.update(obj);
+	public void notifyObserver(Object args) {
+		observer.update();
 	}
 	
 	/*PF: Sets Bounds for CanvasPanel
@@ -108,9 +108,7 @@ public class CanvasPanel extends JPanel implements NewObservable {
 		
 		/*PF: Notifies observer, but only 
 		 * when observer is non-null
-		 * Parameter is null because
-		 * does not need to update with any info
 		 */
-		if (observer != null) notifyObserver(null);
+		if (observer != null) notifyObserver();
 	}
 }

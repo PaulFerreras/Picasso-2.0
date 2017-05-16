@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  * Is placed in Background Panel in PicassoToolBar
  */
 
-public class PicassoButtonPanel extends JPanel implements NewObserver {
+public class PicassoButtonPanel extends JPanel {
 
 	public PicassoButtonPanel() {
 		//PF: Set bounds
@@ -43,11 +43,5 @@ public class PicassoButtonPanel extends JPanel implements NewObserver {
 			JButton new_button = new JButton("" + (i + 1));
 			this.add(new_button);
 		}
-	}
-
-	@Override
-	public void update(Object obj) {
-		// TODO Auto-generated method stub
-		
 	}
 }

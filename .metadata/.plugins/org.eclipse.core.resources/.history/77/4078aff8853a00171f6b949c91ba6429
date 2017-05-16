@@ -22,7 +22,6 @@ import javax.swing.event.MouseInputListener;
 
 public class PicassoToolBar extends JToolBar implements NewObservable {
 	
-	private int old_orientation;
 	private NewObserver observer;
 	
 	public PicassoToolBar(String name) {
@@ -68,8 +67,8 @@ public class PicassoToolBar extends JToolBar implements NewObservable {
 
 
 	@Override
-	public void notifyObserver(Object obj) {
-		observer.update(obj);
+	public void notifyObserver() {
+		observer.update();
 		
 	}
 	
@@ -81,9 +80,9 @@ public class PicassoToolBarListener extends MouseInputAdapter {
 	}
 	
 	/*PF: When mouse is moved over 
-	 * draggable part of PicassoToolBar,
+	 * draggable part of JToolBar,
 	 * mouse turns into a hand cursor
-	 * to indicate PicassoToolBar is draggable
+	 * to indicate it is draggable
 	 */
 	@Override
 	public void mouseMoved(MouseEvent e) {
@@ -94,16 +93,10 @@ public class PicassoToolBarListener extends MouseInputAdapter {
 		}
 	}
 	
-	/*PF: When mouse is released,
-	 * PicassoTBL checks to see if 
-	 * PicassoTB's orientation has changed
-	 * If so, notify PicassoButtonPanel 
-	 * the new orientation
-	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(getOrientation() != old_orientation) {
-			notifyObserver(getOrientation());
+		if(getOrientation() == JToolBar.VERTICAL) {
+			notifyObserver();
 		}
 	}
 }

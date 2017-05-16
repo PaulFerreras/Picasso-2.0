@@ -68,8 +68,8 @@ public class PicassoToolBar extends JToolBar implements NewObservable {
 
 
 	@Override
-	public void notifyObserver(Object obj) {
-		observer.update(obj);
+	public void notifyObserver() {
+		observer.update();
 		
 	}
 	
@@ -102,8 +102,8 @@ public class PicassoToolBarListener extends MouseInputAdapter {
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(getOrientation() != old_orientation) {
-			notifyObserver(getOrientation());
+		if(.get) {
+			notifyObserver();
 		}
 	}
 }

@@ -108,8 +108,6 @@ public class CanvasPanel extends JPanel implements NewObservable {
 		
 		/*PF: Notifies observer, but only 
 		 * when observer is non-null
-		 * Parameter is null because
-		 * does not need to update with any info
 		 */
 		if (observer != null) notifyObserver(null);
 	}
