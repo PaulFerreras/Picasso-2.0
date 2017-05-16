@@ -29,16 +29,22 @@ public class PicassoToolBar extends JToolBar implements NewObservable {
 		//PF: Name gets delegated to JToolBar constructor
 		super(name);
 		
+		//PF: Store orientation in variable
+		old_orientation = getOrientation();
+		
 		/*PF: Create Background Panel
 		 * and Button Panel
 		 */
 		JPanel background_panel = new JPanel(null);
 		PicassoButtonPanel button_panel = new PicassoButtonPanel();
 		
+		//PF: Add PicassoButtonPanel as observer
+		addObserver(button_panel);
+		
 		/*PF: Must set preferred size of Background Panel
 		 * for ToolBar to be visible
 		 */
-		background_panel.setPreferredSize(new Dimension(80, 80));
+		background_panel.setPreferredSize(new Dimension(100, 80));
 		
 		//PF: Set black line borders around background panel
 		background_panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -59,18 +65,16 @@ public class PicassoToolBar extends JToolBar implements NewObservable {
 		add(background_panel);
 	}
 
-
+	//PF: Stores observer in private internal variable
 	@Override
 	public void addObserver(NewObserver o) {
 		observer = o;
-		
 	}
 
-
+	//PF: Notifies observer with object argument
 	@Override
 	public void notifyObserver(Object obj) {
 		observer.update(obj);
-		
 	}
 	
 //PF: Mouse and Mouse Motion Event Listener for PicassoToolBar
@@ -87,10 +91,26 @@ public class PicassoToolBarListener extends MouseInputAdapter {
 	 */
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		if(e.getX() < 14) {
-			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		} else {
-			setCursor(Cursor.getDefaultCursor());
+		/*PF: Checks to see which orientation
+		 * JToolBar is in
+		 * **NOTE** Draggable part is only in
+		 * first 13 pixels of panel
+		 */
+		
+		if(old_orientation == JToolBar.VERTICAL) {
+			if(e.getY() < 14) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			} else {
+				setCursor(Cursor.getDefaultCursor());
+			}
+		}
+		
+		if(old_orientation == JToolBar.HORIZONTAL) {
+			if(e.getX() < 14) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			} else {
+				setCursor(Cursor.getDefaultCursor());
+			}
 		}
 	}
 	
@@ -102,9 +122,25 @@ public class PicassoToolBarListener extends MouseInputAdapter {
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(getOrientation() != old_orientation) {
-			notifyObserver(getOrientation());
+		int new_orientation = getOrientation();
+		
+		//System.out.println(new_orientation);
+		
+		if(new_orientation != old_orientation) {
+			notifyObserver(new_orientation);
+			
+			//PF: Changes old orientation to new orientation
+			old_orientation = new_orientation;
 		}
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		System.out.println("X: " + getX());
+		System.out.println("Y: " + getY());
+		System.out.println(getUI());
+		System.out.println();
+		
 	}
 }
 	
