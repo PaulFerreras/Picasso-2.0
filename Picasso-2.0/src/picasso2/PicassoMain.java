@@ -50,7 +50,7 @@ public class PicassoMain {
 		main_frame.setContentPane(view);
 		
 		//PF: Set Frame to Maximized at start
-		//main_frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+		main_frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		
 		//PF: Set minimum size for Frame
 		main_frame.setMinimumSize(new Dimension(350, 400));
