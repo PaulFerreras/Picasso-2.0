@@ -1,2 +1,6 @@
 1494985663497	Rename method 'setBackgroundPanelHorizontalSize'
 1494985671328	Rename method 'setBackgroundPanelVerticalSize'
+1495134602708	Rename type 'NewObservable'
+1495134619354	Rename type 'NewObserver'
+1495138482410	Rename type 'PicassoToolBarListener'
+1495138657572	Delete element

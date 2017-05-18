@@ -13,7 +13,7 @@ import javax.swing.JToolBar;
  * Is placed in Background Panel in PicassoToolBar
  */
 
-public class PicassoButtonPanel extends JPanel implements NewObserver {
+public class PicassoButtonPanel extends JPanel implements INewObserver {
 	
 	public PicassoButtonPanel() {
 		//PF: Set bounds

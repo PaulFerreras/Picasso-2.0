@@ -20,13 +20,13 @@ import javax.swing.event.MouseInputListener;
  * Also houses PicassoToolBarListener
  */
 
-public class PicassoToolBar extends JToolBar implements NewObservable {
+public class PicassoToolBar extends PicassoAbstractToolBar implements INewObservable {
 	private JPanel background_panel;
 	private PicassoButtonPanel button_panel;
-	private NewObserver observer;
+	private INewObserver observer;
 	
 	public PicassoToolBar(String name) {
-		//PF: Name gets delegated to JToolBar constructor
+		//PF: Name gets delegated to PicassoAbstractToolBar constructor
 		super(name);
 		
 		/*PF: Create Background Panel
@@ -75,7 +75,7 @@ public class PicassoToolBar extends JToolBar implements NewObservable {
 
 	//PF: Stores observer in private internal variable
 	@Override
-	public void addObserver(NewObserver o) {
+	public void addObserver(INewObserver o) {
 		observer = o;
 	}
 
@@ -86,40 +86,10 @@ public class PicassoToolBar extends JToolBar implements NewObservable {
 	}
 	
 //PF: Mouse and Mouse Motion Event Listener for PicassoToolBar
-public class PicassoToolBarListener extends MouseInputAdapter {
+public class PicassoToolBarListener extends PicassoAbstractToolBarListener {
 	
 	public PicassoToolBarListener() {
 		
-	}
-	
-	/*PF: When mouse is moved over 
-	 * draggable part of PicassoToolBar,
-	 * mouse turns into a hand cursor
-	 * to indicate PicassoToolBar is draggable
-	 */
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		/*PF: Checks to see which orientation
-		 * JToolBar is in
-		 * **NOTE** Draggable part is only in
-		 * first 13 pixels of panel
-		 */
-		
-		if(getOrientation() == JToolBar.VERTICAL) {
-			if(e.getY() < 14) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			} else {
-				setCursor(Cursor.getDefaultCursor());
-			}
-		}
-		
-		if(getOrientation() == JToolBar.HORIZONTAL) {
-			if(e.getX() < 14) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			} else {
-				setCursor(Cursor.getDefaultCursor());
-			}
-		}
 	}
 	
 	/*PF: When mouse is released,

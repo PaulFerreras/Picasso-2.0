@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  * Observer of Canvas
  */
 
-public class CanvasContainer extends JPanel implements NewObserver {
+public class CanvasContainer extends JPanel implements INewObserver {
 	
 	private CanvasPanel canvas_panel;
 	private int se_circle_x;

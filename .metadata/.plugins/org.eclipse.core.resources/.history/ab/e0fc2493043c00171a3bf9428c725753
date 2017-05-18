@@ -1,0 +1,26 @@
+package picasso2;
+
+import javax.swing.JToolBar;
+
+abstract public class PicassoAbstractToolBar extends JToolBar {
+
+	public PicassoAbstractToolBar() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public PicassoAbstractToolBar(int arg0) {
+		super(arg0);
+		// TODO Auto-generated constructor stub
+	}
+
+	public PicassoAbstractToolBar(String arg0) {
+		super(arg0);
+		// TODO Auto-generated constructor stub
+	}
+
+	public PicassoAbstractToolBar(String arg0, int arg1) {
+		super(arg0, arg1);
+		// TODO Auto-generated constructor stub
+	}
+
+}
