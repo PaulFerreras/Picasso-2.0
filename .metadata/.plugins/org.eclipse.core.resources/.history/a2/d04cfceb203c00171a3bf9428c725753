@@ -1,0 +1,11 @@
+package picasso2;
+
+import javax.swing.event.MouseInputAdapter;
+
+public class AbstractTool extends MouseInputAdapter {
+
+	public AbstractTool() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,6 +1,5 @@
 package picasso2;
 
-import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -15,6 +14,7 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 	private PicassoModel model;
 	private PicassoView view;
 	private CanvasPanel canvas;
+	private PaintBrushTool paint_brush_tool;
 
 	public PicassoController(PicassoModel model, PicassoView view) {
 		/*PF: PicassoController gets model
@@ -32,6 +32,9 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		 */
 		this.canvas.addMouseListener(this);
 		this.canvas.addMouseMotionListener(this);
+		
+		//PF: Create Tools
+		paint_brush_tool = new PaintBrushTool();
 	}
 
 	@Override
@@ -43,7 +46,7 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		canvas.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+		canvas.setCursor(paint_brush_tool.getCursor());
 	}
 
 	@Override

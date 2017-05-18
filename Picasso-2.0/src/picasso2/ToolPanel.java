@@ -30,7 +30,7 @@ public class ToolPanel extends JPanel implements INewObserver {
 	}
 
 	private void addButtons() {
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 6; i++) {
 			JButton new_button = new JButton("" + (i + 1));
 			this.add(new_button);
 		}

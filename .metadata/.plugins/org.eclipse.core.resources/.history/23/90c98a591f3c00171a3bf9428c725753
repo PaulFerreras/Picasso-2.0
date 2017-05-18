@@ -1,0 +1,126 @@
+package picasso2;
+
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+
+/*PF: This is where the actions of
+ * the user are taken in and 
+ *  are processed in the program
+ */
+
+public class PicassoController implements MouseListener, MouseMotionListener {
+	
+	private PicassoModel model;
+	private PicassoView view;
+	private CanvasPanel canvas;
+	private Cursor brush_cursor;
+
+	public PicassoController(PicassoModel model, PicassoView view) {
+		/*PF: PicassoController gets model
+		 * and view, so user actions in
+		 * view can be used to edit the model.
+		 */
+		this.model = model;
+		this.view = view;
+		this.canvas = view.getPicassoCanvas();
+		
+		/*PF: PicassoController is added
+		 * as a MouseListener and 
+		 * a MouseMotionListener to
+		 * canvas
+		 */
+		this.canvas.addMouseListener(this);
+		this.canvas.addMouseMotionListener(this);
+		
+		//PF: Build brush_cursor_image
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		BufferedImage brush_cursor_image = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = brush_cursor_image.createGraphics();
+			
+			/*PF: Make graphics not look like shit lol
+		 	* AKA make circles look like proper circles
+		 	*/
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.CLEAR));
+		g2.fillRect(0, 0, brush_cursor_image.getWidth(), brush_cursor_image.getHeight());
+		
+		//reset composite
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
+		
+		g2.setColor(Color.WHITE);
+		g2.fillOval(3, 3, 8, 8);
+		Point brush_cursor_hot_spot = new Point(0, 0);
+		brush_cursor = toolkit.createCustomCursor(brush_cursor_image, brush_cursor_hot_spot, "Brush Cursor");
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		canvas.setCursor(brush_cursor);
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*PF: When user presses cursor,
+	 * controller draws on canvas
+	 */
+	@Override
+	public void mousePressed(MouseEvent e) {
+		
+		/*PF: User presses invokes 
+		 * draw method in model and 
+		 * repaint method in view
+		 */
+		model.draw(e.getX(), e.getY(), e.getID());
+		canvas.repaint();
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*PF: When user presses and drags cursor,
+	 * controller draws on canvas
+	 */
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		
+		/*PF: User presses and drags
+		 * invokes draw method in model 
+		 * and repaint method in view
+		 */
+		model.draw(e.getX(), e.getY(), e.getID());
+		canvas.repaint();
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
+}

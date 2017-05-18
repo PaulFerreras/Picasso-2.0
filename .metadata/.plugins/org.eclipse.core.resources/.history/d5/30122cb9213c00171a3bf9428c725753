@@ -1,0 +1,17 @@
+package picasso2;
+
+import java.awt.Cursor;
+
+public class PaintBrushTool extends AbstractTool {
+
+	public PaintBrushTool() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public Cursor getCursor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
