@@ -13,9 +13,9 @@ import javax.swing.JToolBar;
  * Is placed in Background Panel in PicassoToolBar
  */
 
-public class ToolPanel extends JPanel implements INewObserver {
+public class PicassoButtonPanel extends JPanel implements INewObserver {
 	
-	public ToolPanel() {
+	public PicassoButtonPanel() {
 		//PF: Set bounds
 		setBounds(20, 5, 190, 70);
 		

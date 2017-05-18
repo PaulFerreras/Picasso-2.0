@@ -22,7 +22,7 @@ import javax.swing.event.MouseInputListener;
 
 public class PicassoToolBar extends PicassoAbstractToolBar implements INewObservable {
 	private JPanel background_panel;
-	private ToolPanel button_panel;
+	private PicassoButtonPanel button_panel;
 	private INewObserver observer;
 	
 	public PicassoToolBar(String name) {
@@ -33,7 +33,7 @@ public class PicassoToolBar extends PicassoAbstractToolBar implements INewObserv
 		 * and Button Panel
 		 */
 		background_panel = new JPanel(null);
-		button_panel = new ToolPanel();
+		button_panel = new PicassoButtonPanel();
 		
 		//PF: Add PicassoButtonPanel as observer
 		addObserver(button_panel);
