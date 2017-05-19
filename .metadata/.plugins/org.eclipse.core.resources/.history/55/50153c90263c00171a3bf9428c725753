@@ -72,7 +72,7 @@ public class PaintBrushTool extends AbstractTool {
 
 		//PF: Set brush color and fill the appropriate size 
 		g2.setColor(brush_color);
-		g2.fillRect(0, 0, brush_size, brush_size);
+		g2.fillOval(0, 0, brush_size, brush_size);
 		
 		/*PF: This point (hot spot) is the 
 		 * location at which mouse events occur
@@ -93,13 +93,13 @@ public class PaintBrushTool extends AbstractTool {
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
-		model.draw(e.getID(),e.getX(), e.getY(), brush_size, brush_color);
+		model.draw(e.getX(), e.getY(), brush_size, brush_color, e.getID());
 		canvas.repaint();
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		model.draw(e.getID(),e.getX(), e.getY(), brush_size, brush_color);
+		model.draw(e.getX(), e.getY(), brush_size, brush_color, e.getID());
 		canvas.repaint();
 	}
 }

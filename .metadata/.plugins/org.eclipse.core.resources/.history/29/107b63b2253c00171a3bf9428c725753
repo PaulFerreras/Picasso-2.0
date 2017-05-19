@@ -35,7 +35,7 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		this.canvas.addMouseMotionListener(this);
 		
 		//PF: Create Tools
-		paint_brush_tool = new PaintBrushTool(model, canvas);
+		paint_brush_tool = new PaintBrushTool();
 		
 		//PF: Current Tool set to PaintBrushTool
 		current_tool = paint_brush_tool;
@@ -57,10 +57,19 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+	/*PF: When user presses cursor,
+	 * controller draws on canvas
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
-		current_tool.mousePressed(e);
+		
+		/*PF: User presses invokes 
+		 * draw method in model and 
+		 * repaint method in view
+		 */
+		model.draw(e.getX(), e.getY(), e.getID());
+		canvas.repaint();
 	}
 
 	@Override
@@ -69,9 +78,18 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		
 	}
 
+	/*PF: When user presses and drags cursor,
+	 * controller draws on canvas
+	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		 current_tool.mouseDragged(e);
+		
+		/*PF: User presses and drags
+		 * invokes draw method in model 
+		 * and repaint method in view
+		 */
+		model.draw(e.getX(), e.getY(), e.getID());
+		canvas.repaint();
 	}
 
 	@Override

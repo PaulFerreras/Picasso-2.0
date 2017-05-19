@@ -15,7 +15,7 @@ public class PaintBrushTool extends AbstractTool {
 
 	private PicassoModel model;
 	private CanvasPanel canvas;
-	private int brush_size = 10;
+	private int brush_size = 1;
 	private Color brush_color = Color.BLACK;
 	
 	public PaintBrushTool(PicassoModel model, CanvasPanel canvas) {

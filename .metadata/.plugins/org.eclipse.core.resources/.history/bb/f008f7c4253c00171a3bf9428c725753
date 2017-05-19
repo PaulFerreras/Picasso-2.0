@@ -6,7 +6,6 @@ import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 //PF: PaintBrushTool contains all the data used to draw on PicassoModel
@@ -72,7 +71,7 @@ public class PaintBrushTool extends AbstractTool {
 
 		//PF: Set brush color and fill the appropriate size 
 		g2.setColor(brush_color);
-		g2.fillRect(0, 0, brush_size, brush_size);
+		g2.fillOval(0, 0, brush_size, brush_size);
 		
 		/*PF: This point (hot spot) is the 
 		 * location at which mouse events occur
@@ -87,19 +86,6 @@ public class PaintBrushTool extends AbstractTool {
 		return brush_cursor;
 	}
 
-	/*PF: When user presses or drags mouse,
-	 * calls draw method in model and 
-	 * repaint method in canvas
-	 */
 	@Override
-	public void mousePressed(MouseEvent e) {
-		model.draw(e.getID(),e.getX(), e.getY(), brush_size, brush_color);
-		canvas.repaint();
-	}
-	
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		model.draw(e.getID(),e.getX(), e.getY(), brush_size, brush_color);
-		canvas.repaint();
-	}
+	public void mousePressed() {
 }

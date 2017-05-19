@@ -60,7 +60,7 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		current_tool.mousePressed(e);
+		
 	}
 
 	@Override

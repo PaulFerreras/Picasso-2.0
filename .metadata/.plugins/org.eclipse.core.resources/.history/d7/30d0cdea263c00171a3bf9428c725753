@@ -15,7 +15,7 @@ public class PaintBrushTool extends AbstractTool {
 
 	private PicassoModel model;
 	private CanvasPanel canvas;
-	private int brush_size = 10;
+	private int brush_size = 2;
 	private Color brush_color = Color.BLACK;
 	
 	public PaintBrushTool(PicassoModel model, CanvasPanel canvas) {
@@ -72,7 +72,7 @@ public class PaintBrushTool extends AbstractTool {
 
 		//PF: Set brush color and fill the appropriate size 
 		g2.setColor(brush_color);
-		g2.fillRect(0, 0, brush_size, brush_size);
+		g2.fillOval(0, 0, brush_size, brush_size);
 		
 		/*PF: This point (hot spot) is the 
 		 * location at which mouse events occur

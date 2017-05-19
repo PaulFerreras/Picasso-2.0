@@ -89,10 +89,10 @@ public class PicassoModel {
 		g2 = buffered_image.createGraphics();
 		
 		//PF: Color is set to Black
-		g2.setColor(brush_color);
+		g2.setColor(Color.BLACK);
 		
-		//PF: Stroke size is set to brush size, cap is set to round, join is set to round
-		g2.setStroke(new BasicStroke(brush_size, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+		//PF: Stroke size is set to 10 (float value), cap is set to round, join is set to round
+		g2.setStroke(new BasicStroke(10, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		
 		/*PF: Line2D is used to draw smooth lines
 		 * between each point, rather than
