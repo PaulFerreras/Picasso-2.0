@@ -3,6 +3,8 @@ package picasso2;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Iterator;
+import java.util.List;
 
 /*PF: This is where the actions of
  * the user are taken in and 
@@ -34,11 +36,15 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		this.canvas.addMouseListener(this);
 		this.canvas.addMouseMotionListener(this);
 		
-		//PF: Create Tools
+		//PF: Create tools
 		paint_brush_tool = new PaintBrushTool(model, canvas);
 		
 		//PF: Current Tool set to PaintBrushTool
 		current_tool = paint_brush_tool;
+	}
+	
+	private void setTool(String tool_name) {
+		
 	}
 
 	@Override

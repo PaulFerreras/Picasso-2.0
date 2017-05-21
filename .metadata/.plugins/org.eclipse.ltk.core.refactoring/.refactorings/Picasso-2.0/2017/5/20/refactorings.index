@@ -6,3 +6,5 @@
 1495138657572	Delete element
 1495139453799	Delete element
 1495139512213	Rename type 'PicassoButtonPanel'
+1495154132068	Rename type 'ColorSelectionPanel'
+1495154149347	Rename local variable 'color_selection_panel'

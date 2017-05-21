@@ -1,0 +1,13 @@
+package picasso2;
+
+import java.awt.LayoutManager;
+
+import javax.swing.JPanel;
+
+public class ColorSelectionPanel extends JPanel {
+
+	public ColorSelectionPanel() {
+		setBounds(0, 0, 100, 100);
+	}
+
+}

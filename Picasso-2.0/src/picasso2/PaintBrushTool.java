@@ -51,28 +51,19 @@ public class PaintBrushTool extends AbstractTool {
 	public Cursor getCursor() {
 		/*PF: Build 32x32 brush cursor image
 		 * BufferedImageType is ARGB which allows for alpha values
-		 * **NOTE** alpha values are necessary 
-		 * for the transparent pixels
+		 * **NOTE** alpha values code for transparency
+		 * (0 is transparent, 255 is opaque)
+		 * BufferedImages of type INT_ARGB 
+		 * start with alpha values of 0
 		 */
 		BufferedImage brush_cursor_image = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
 		
 		//PF: Create Graphics2D object
 		Graphics2D g2 = brush_cursor_image.createGraphics();
 
-		/*PF: Set Composite to AlphaComposite.Clear (transparent pixels)
-		 * and fill the entire buffered image with them
-		 */
-		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.CLEAR));
-		g2.fillRect(0, 0, brush_cursor_image.getWidth(), brush_cursor_image.getHeight());
-
-		/*PF: Set Composite to AlphaComposite.SRC_Over
-		 * which allows the buffered image to be redrawn over
-		 */
-		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
-
 		//PF: Set brush color and fill the appropriate size 
 		g2.setColor(brush_color);
-		g2.fillRect(0, 0, brush_size, brush_size);
+		g2.fillOval(0, 0, brush_size, brush_size);
 		
 		/*PF: This point (hot spot) is the 
 		 * location at which mouse events occur

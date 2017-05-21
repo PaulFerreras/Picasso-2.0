@@ -1,7 +1,0 @@
-package picasso2;
-
-public interface NewObserver {
-	
-	protected void update();
-	
-}
