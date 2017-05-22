@@ -50,7 +50,7 @@ public class PicassoView extends JPanel {
 		
 		//PF: Create ToolBars
 		PicassoToolBar tool_bar = new PicassoToolBar("ToolBar");
-		PicassoToolUIToolBar tool_ui_tool_bar = new PicassoToolUIToolBar();
+		PicassoToolUIToolBar tool_bar_ui = new PicassoToolUIToolBar();
 		
 		//PF: JPanels are added together
 		add(canvas_and_toolbar_ui_container, BorderLayout.CENTER);
@@ -62,7 +62,7 @@ public class PicassoView extends JPanel {
 				 * viewport of JScrollPane
 				 */
 		canvas_and_toolbar_ui_container.add(scroll_pane, BorderLayout.CENTER);
-		canvas_and_toolbar_ui_container.add(tool_ui_tool_bar, BorderLayout.LINE_START);
+		canvas_and_toolbar_ui_container.add(tool_bar_ui, BorderLayout.LINE_START);
 		
 		//PF: Canvas adds CanvasContainer as an observer
 		canvas_panel.addObserver(canvas_container);
