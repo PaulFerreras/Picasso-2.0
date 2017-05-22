@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-//PF: This is where the color and brightness of the brush is selected
+//PF: This is where the color of the brush is selected
 
 public class ColorSelectionPanel extends JPanel {
 

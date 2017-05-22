@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-//PF: This is the UI of the BrushTool
+//PF: This is where different colors are chosen
 
 public class BrushPanel extends JPanel {
 

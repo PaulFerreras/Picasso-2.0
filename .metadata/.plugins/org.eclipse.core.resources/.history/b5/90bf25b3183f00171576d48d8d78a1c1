@@ -12,7 +12,7 @@ public class BrushPanel extends JPanel {
 
 	public BrushPanel() {
 		//PF: Set Layout to null
-		setLayout(null);
+//		setLayout(null);
 		
 		//PF: Set Border to black line border
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));

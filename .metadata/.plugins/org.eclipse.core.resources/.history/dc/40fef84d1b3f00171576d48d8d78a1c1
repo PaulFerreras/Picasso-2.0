@@ -1,7 +1,6 @@
 package picasso2;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -190,8 +189,6 @@ public class ColorWheel extends JPanel {
 		//PF: Add ColorWheelListener as Mouse and MouseMotion Listener
 		addMouseListener(cwl);
 		addMouseMotionListener(cwl);
-		
-		setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 	}
 
 	/*PF: This is the function called 

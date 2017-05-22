@@ -63,7 +63,7 @@ public class BrightnessScale extends JPanel {
 		//PF: Set Color to Black
 		g2.setColor(Color.BLACK);
 		
-		//PF: Draw black outline around rectangle
+		//PF: 
 		g2.draw(rectangle);
 	}
 

@@ -1,10 +1,9 @@
 package picasso2;
 
+import javax.swing.JColorChooser;
 import javax.swing.JToolBar;
 
-/*PF: This is the where the UI of all of the tools are created 
- * Extends PicassoAbstractToolBar
- */
+//PF:
 
 public class PicassoToolUIToolBar extends PicassoAbstractToolBar {
 

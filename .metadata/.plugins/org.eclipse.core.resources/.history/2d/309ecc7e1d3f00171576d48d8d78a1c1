@@ -43,27 +43,14 @@ public class BrightnessScale extends JPanel {
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
-		/* PF: Send graphics to JPanel above.
-		 * Allows the background of the component
-		 * to be opaque
-		 */
 		super.paintComponent(g);
 		
-		//PF: Cast graphics to Graphics2D object
 		Graphics2D g2 = (Graphics2D) g;
 		
-		/*PF: Set paint to gradient paint to draw 
-		 * a gradient from black to color chosen
-		 */
 		g2.setPaint(new GradientPaint(0f, 10f, Color.WHITE, 0f, 190f, Color.BLACK));
-		
-		//PF: Fill rectangle with gradient paint
 		g2.fill(rectangle);
 		
-		//PF: Set Color to Black
 		g2.setColor(Color.BLACK);
-		
-		//PF: Draw black outline around rectangle
 		g2.draw(rectangle);
 	}
 

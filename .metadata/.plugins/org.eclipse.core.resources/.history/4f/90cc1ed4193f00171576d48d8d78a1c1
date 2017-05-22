@@ -1,7 +1,6 @@
 package picasso2;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,20 +14,11 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
-//PF: This is where color (chroma) can be selected
-
 public class ColorWheel extends JPanel {
 	
 	private BufferedImage color_wheel_bi;
-	
-	/*PF: Width and height variables determine
-	 * size of buffered image. Inset determines
-	 * distance of color wheel from edges of
-	 * buffered image.
-	 */
 	private int width = 200, height = 200,
-				center_x, center_y,
-				inset = 10;
+				center_x, center_y;
 
 	public ColorWheel() {
 		//PF: Set preferred size
@@ -52,6 +42,9 @@ public class ColorWheel extends JPanel {
 		
 		//PF: Get and store radius
 		int radius = width / 2;
+		
+		//PF: Inset of color wheel from edge of panel
+		int inset = 10;
 		
 		/*PF: Create circle shape to use 
 		 * Shape.contains() method in double for loop.
@@ -190,28 +183,15 @@ public class ColorWheel extends JPanel {
 		//PF: Add ColorWheelListener as Mouse and MouseMotion Listener
 		addMouseListener(cwl);
 		addMouseMotionListener(cwl);
-		
-		setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 	}
 
-	/*PF: This is the function called 
-	 * when ColorWheel gets repainted.
-	 * Overrides paintComponent of JPanel.
-	 * This allows Buffered Images to be drawn
-	 */
 	@Override
 	public void paintComponent(Graphics g) {
-		/* PF: Send graphics to JPanel above.
-		 * Allows the background of the component
-		 * to be opaque
-		 */
 		super.paintComponent(g);
 		
-		//PF: Draw Buffered Image at (0,0)
 		g.drawImage(color_wheel_bi, 0, 0, null);
 	}
 	
-//Mouse and MotionListener for ColorWheel	
 public class ColorWheelListener extends MouseInputAdapter {
 	
 	public ColorWheelListener() {

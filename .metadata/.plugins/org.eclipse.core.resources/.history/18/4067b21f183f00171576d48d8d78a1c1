@@ -1,10 +1,7 @@
 package picasso2;
 
+import javax.swing.JColorChooser;
 import javax.swing.JToolBar;
-
-/*PF: This is the where the UI of all of the tools are created 
- * Extends PicassoAbstractToolBar
- */
 
 public class PicassoToolUIToolBar extends PicassoAbstractToolBar {
 
@@ -12,10 +9,10 @@ public class PicassoToolUIToolBar extends PicassoAbstractToolBar {
 		//PF: Set orientation to vertical
 		setOrientation(JToolBar.VERTICAL);
 		
-		//PF: Create Panels
+		//PF: Create BrushPanel
 		BrushPanel brush_panel = new BrushPanel();
 		
-		//PF: Add Panels
+		//PF: Add BrushPanel
 		add(brush_panel);
 	}
 

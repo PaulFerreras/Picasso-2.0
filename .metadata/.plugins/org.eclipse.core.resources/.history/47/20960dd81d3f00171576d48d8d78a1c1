@@ -56,14 +56,10 @@ public class BrightnessScale extends JPanel {
 		 * a gradient from black to color chosen
 		 */
 		g2.setPaint(new GradientPaint(0f, 10f, Color.WHITE, 0f, 190f, Color.BLACK));
-		
 		//PF: Fill rectangle with gradient paint
 		g2.fill(rectangle);
 		
-		//PF: Set Color to Black
 		g2.setColor(Color.BLACK);
-		
-		//PF: Draw black outline around rectangle
 		g2.draw(rectangle);
 	}
 
