@@ -16,10 +16,9 @@ public class ColorSelectionPanel extends JPanel {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		ColorWheel color_wheel = new ColorWheel();
-		BrightnessScale brightness_scale = new BrightnessScale();
+		BrightnessScale brightness = new BrightnessScale();
 		
 		add(color_wheel);
-		add(brightness_scale);
 	}
 
 }

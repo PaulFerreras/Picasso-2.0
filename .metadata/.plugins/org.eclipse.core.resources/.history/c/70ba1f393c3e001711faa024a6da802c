@@ -19,7 +19,7 @@ public class ColorSelectionPanel extends JPanel {
 		BrightnessScale brightness_scale = new BrightnessScale();
 		
 		add(color_wheel);
-		add(brightness_scale);
+		add(brightness_scale)
 	}
 
 }

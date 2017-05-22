@@ -1,0 +1,23 @@
+package picasso2;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.LayoutManager;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+
+public class BrightnessScale extends JPanel {
+
+	private int width = 100, height = 200;
+	
+	public BrightnessScale() {
+		//PF: Set preferred size
+		setPreferredSize(new Dimension(width, height));
+		
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		
+	}
+
+}
