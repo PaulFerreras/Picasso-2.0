@@ -1,6 +1,5 @@
 package picasso2;
 
-import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -54,21 +53,15 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		
 	}
 
-	
-	/*PF: When mouse has entered Canvas Panel
-	 * set cursor to proper tool cursor
-	 */
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		canvas.setCursor(current_tool.getCursor());
 	}
 
-	/*PF: When mouse has exited Canvas Panel
-	 * set cursor back to default cursor
-	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		canvas.setCursor(Cursor.getDefaultCursor());
+		// TODO Auto-generated method stub
+		
 	}
 	
 	@Override
