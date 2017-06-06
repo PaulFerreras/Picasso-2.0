@@ -1,9 +1,0 @@
-package picasso2;
-
-public class PicassoToolBarUI {
-
-	public PicassoToolBarUI() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

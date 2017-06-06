@@ -1,0 +1,40 @@
+package picasso2;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+
+//PF: This is the selector used to choose the color on the color wheel
+
+public class ColorWheelSelector {
+	
+	public int radius = 18;
+	public Shape outer_shape; // inner_shape;
+	
+	public ColorWheelSelector(int x, int y) {
+		outer_shape = getOuterShape(x, y);
+	}
+	
+	public Shape getOuterShape(int x, int y) {
+		return new Ellipse2D.Float((float) x - (radius / 2), 
+				(float) y - (radius / 2), (float) radius, (float) radius);
+	}
+	
+//	public Shape getInnerShape(int x, int y) {
+//		
+//	}
+	
+	public void moveSelector(int x, int y) {
+		outer_shape = getOuterShape(x, y);
+	}
+
+	public void drawSelector(Graphics2D g2) {
+		g2.setColor(Color.RED);
+		
+		g2.fill(outer_shape);
+		
+		g2.setColor(Color.BLACK);
+		g2.draw(outer_shape);
+	}
+}

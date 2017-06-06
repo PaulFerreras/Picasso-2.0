@@ -25,6 +25,7 @@ public class BrightnessScale extends JPanel {
 		//PF: Set preferred size
 		setPreferredSize(new Dimension(width, height));
 		
+		//PF: Create a black line border
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		/*PF: Shape used to draw Brightness Scale

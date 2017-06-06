@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
@@ -27,8 +28,22 @@ public class ColorWheel extends JPanel {
 	 * buffered image.
 	 */
 	private int width = 200, height = 200,
-				center_x, center_y,
-				inset = 10;
+				radius, inset = 10,
+				center_x, center_y;
+	
+	/*PF: Circle shape is used to make sure it will color 
+	 * the color wheel only inside the circle
+	 */
+	private Shape circle;
+	
+	/*PF: This will be the icon that the user can move 
+	 * inside the color wheel to select the color 
+	 * that they want to use
+	 */
+	private ColorWheelSelector color_wheel_selector;
+	
+	//PF: Used to keep track of where mouse was first clicked
+	private boolean in_circle;
 
 	public ColorWheel() {
 		//PF: Set preferred size
@@ -42,30 +57,37 @@ public class ColorWheel extends JPanel {
 		 * (0 is transparent, 255 is opaque)
 		 * BufferedImages of type INT_ARGB 
 		 * start with alpha values of 0
+		 * Therefore, will be completely transparent
 		 * **NOTE** BufferedImage is where the color wheel
 		 * will be drawn. This is because when we need to
 		 * retrieve the color from the color wheel,
 		 * it will be easier to call BufferedImage.getRGB()
-		 * rather than doing the calculations again
+		 * than calculating for the actual color
 		 */
 		color_wheel_bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		
-		//PF: Get and store radius
-		int radius = width / 2;
+		
+		
+		/*PF: Get and store radius
+		 * Using inset to make the circle smaller
+		 */
+		radius = (width / 2) - inset;
 		
 		/*PF: Create circle shape to use 
 		 * Shape.contains() method in double for loop.
-		 * Use inset to make circle smaller
+		 * This will make sure that it will only
+		 * color inside of the circle
+		 * Ellipse2D.Float only takes in float values
 		 */
-		Shape circle = new Ellipse2D.Float(inset, inset, (radius - inset) * 2, (radius - inset) * 2);
+		circle = new Ellipse2D.Float((float) inset, (float) inset, (float) radius * 2, (float) radius * 2);
 		
-		//PF: Save x and y coordinates of center
-		center_x = radius;
-		center_y = radius;
+		//PF: Place circle at the center of the buffered_image
+		center_x = width / 2;
+		center_y = height / 2;
 		
-		//PF: Two for loops to draw the color wheel
-		for (int row = 0; row < color_wheel_bi.getHeight(); row++) {
-			for (int col = 0; col < color_wheel_bi.getWidth(); col++) {
+		//PF: Two for loops are used to draw the color wheel
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
 				
 				/*PF: Use Shape.contains() method to draw 
 				 * only when inside of the circle
@@ -75,12 +97,7 @@ public class ColorWheel extends JPanel {
 					/*PF: We must first adjust the
 					 * x and y values so that they are in 
 					 * reference the center of the circle
-					 */
-					
-					int x = col - center_x;
-					int y = row - center_y;
-					
-					/* **NOTE** Subtraction is used here
+					 * **NOTE** Subtraction is used here
 					 * because we are actually moving the
 					 * x and y values towards the origin
 					 * of the component (0, 0),
@@ -88,20 +105,23 @@ public class ColorWheel extends JPanel {
 					 * to the center of the circle.
 					 */
 					
+					int x = col - center_x;
+					int y = row - center_y;
+					
 					/*PF: To draw the color wheel, 
 					 * we will be using the HSB Color Model
 					 * AKA HSV Color Model
 					 
 					 * **NOTE** HSB Color Model and HSV Color Model
-					 * for all intents and purposes is the same.
-					 * Java does not support HSL Color model methods
+					 * for all intents and purposes are the same.
+					 * Java does not support HSL Color Model methods
 					 
 					 * This is because the HSB Color 
 					 * Model is a cylindrical 3D shape which
 					 * will be easier to draw on a circle
 					 * rather than the RGB Color model
 					 * which is a 3D cube.
-					 * HSL stands for,
+					 * HSB (HSV) stands for,
 					 * Hue,
 					 * Saturation,
 					 * Brightness (or value),
@@ -143,11 +163,11 @@ public class ColorWheel extends JPanel {
 					 * Since the HSB color model is a 
 					 * cylindrical 3D model, to draw
 					 * a 2D circle from this color
-					 * model would require a slice of the 
+					 * model would require a cross-section of the 
 					 * color model to be taken. This is 
 					 * done by keeping one of the variables constant
 					 
-					 * Therefore, brightness is set at 1.0
+					 * Therefore, brightness is set at 1.0, always
 					 */
 					double brightness = 1;
 					
@@ -184,14 +204,19 @@ public class ColorWheel extends JPanel {
 		//PF: Dispose Graphics2D
 		g2.dispose();
 		
+		/*PF: Create ColorWheelSelector at center of ColorWheel
+		 * This will be the icon that the user can move
+		 * inside the color wheel to select the color 
+		 * that they want to use
+		 */
+		color_wheel_selector = new ColorWheelSelector(width / 2, height / 2);
+		
 		//PF: Create ColorWheelListener
 		ColorWheelListener cwl = new ColorWheelListener();
 		
 		//PF: Add ColorWheelListener as Mouse and MouseMotion Listener
 		addMouseListener(cwl);
 		addMouseMotionListener(cwl);
-		
-		setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 	}
 
 	/*PF: This is the function called 
@@ -209,6 +234,12 @@ public class ColorWheel extends JPanel {
 		
 		//PF: Draw Buffered Image at (0,0)
 		g.drawImage(color_wheel_bi, 0, 0, null);
+		
+		/*PF: Draws Color Wheel Selector by delegating
+		 * the drawing to the method drawSelector(Graphics2D)
+		 * in ColorWheelSelector
+		 */
+		color_wheel_selector.drawSelector((Graphics2D) g); 
 	}
 	
 //Mouse and MotionListener for ColorWheel	
@@ -218,40 +249,95 @@ public class ColorWheelListener extends MouseInputAdapter {
 		
 	}
 	
+	/*PF: When mouse is pressed or dragged, 
+	 * the color wheel selector is moved to that point.
+	 * **NOTE** The color wheel selector cannot 
+	 * be moved outside of the color wheel.
+	 * If user first clicks outside of the wheel
+	 * then drags mouse, the color wheel 
+	 * selector must not move.
+	 */
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		Graphics2D g2 = color_wheel_bi.createGraphics();
+		/*PF: If mouse is pressed inside 
+		 * of the color wheel circle
+		 */
+		if(circle.contains(e.getX(), e.getY())) {
+			
+			//PF: in_circle boolean is set to true
+			in_circle = true;
+			
+			//PF: Color Wheel Selector is moved to mouse's spot
+			color_wheel_selector.moveSelector(e.getX(), e.getY());
+			
+			/*PF: ColorWheel is only repainted if 
+			 * the mouse click is inside the circle
+			 */
+			repaint();
 		
-		int radius = 5;
-		
-		g2.setColor(Color.BLACK);
-		g2.drawOval(e.getX() - radius, e.getY() - radius, radius * 2, radius * 2);
-		
-		repaint();
+		/*PF: If mouse is pressed outside
+		 * of the color wheel circle
+		 */
+		} else {
+			
+			//PF: in_circle boolean is set to false
+			in_circle = false;
+		}
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		Graphics2D g2 = color_wheel_bi.createGraphics();
 		
-		int radius = 5;
+		/*PF: Checks to see if initial mouse click
+		 * is inside of the color wheel circle
+		 */
+		if(in_circle) {
+			
+			/*PF: If mouse is dragged inside
+			 * of the color wheel circle
+			 */
+			if(circle.contains(e.getX(), e.getY())) {
+				
+				//PF: Color Wheel Selector is moved to mouse's spot
+				color_wheel_selector.moveSelector(e.getX(), e.getY());
+				
+			/*PF: If mouse is dragged outside
+			 * of the color wheel circle
+			 */
+			} else {
+				
+				/*PF: The location of the Color Wheel Selector
+				 * is calculated on the circumference 
+				 * of the Color Wheel Circle.
+				 * This is done by calculating the polar 
+				 * coordinates of the location and converting 
+				 * them to x, y (cartesian) coordinates.
+				 */
+				
+				//PF: Calculate theta by using Math.atan2 method (y, x)
+				double radians = Math.atan2(e.getY() - center_y, e.getX() - center_x);
+
+				/*PF: Convert polar coordinates to x, y coordinates 
+				 * using following equations:
+				 * x = r * cos(theta)
+				 * y = r * sin(theta)
+				 * with r being the radius of the circle
+				 */
+				double x = (radius * Math.cos(radians)) + center_x;
+				double y = (radius * Math.sin(radians)) + center_y;
+
+				//PF: Color Wheel Selector is moved to the proper x, y coordinate
+				color_wheel_selector.moveSelector((int) x, (int) y);
+
+			}
+			
+			//PF: Color Wheel Circle is repainted
+			repaint();
+		}
 		
-		g2.setColor(Color.BLACK);
-		g2.drawOval(e.getX() - radius, e.getY() - radius, radius * 2, radius * 2);
-		
-		repaint();
 	}
 	
-//	int x = e.getX() - center_x;
-//	int y = e.getY() - center_y;
-//	
-//	double degrees= Math.toDegrees(Math.atan2(y, x));
-//	double distance = Point2D.distance(x, y, 0, 0) / center_x;
-//	
-//	System.out.println("X: " + x);
-//	System.out.println("Y: " + y);
-//	System.out.println("Degrees: " + degrees);
-//	System.out.println("Distance: " + distance);
  }
 	
 }
