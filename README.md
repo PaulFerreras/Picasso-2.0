@@ -1,5 +1,5 @@
 # Picasso-2.0
-The best photo editor ever.
+The bestester photo editor ever.
 
 Rules of coding:
 
