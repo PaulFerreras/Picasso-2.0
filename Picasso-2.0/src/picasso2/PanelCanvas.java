@@ -16,12 +16,12 @@ import javax.swing.border.Border;
  * Observable to CanvasConainer
  */
 
-public class CanvasPanel extends JPanel implements INewObservable {
+public class PanelCanvas extends JPanel implements InterfaceNewObservable {
 	
-	private PicassoModel model;
-	private INewObserver observer;
+	private MainModel model;
+	private InterfaceNewObserver observer;
 	
-	public CanvasPanel(PicassoModel model) {
+	public PanelCanvas(MainModel model) {
 		//PF: Set bounds of Canvas
 		setBounds(0, 0, 300, 300);
 		
@@ -89,7 +89,7 @@ public class CanvasPanel extends JPanel implements INewObservable {
 
 	//PF: Adds NewObserver into internal private variable observer
 	@Override
-	public void addObserver(INewObserver o) {
+	public void addObserver(InterfaceNewObserver o) {
 		observer = o;
 	}
 

@@ -11,12 +11,12 @@ import javax.swing.KeyStroke;
 
 //PF: This is the Menubar of the program
 
-public class PicassoMenuBar extends JMenuBar implements ActionListener {
+public class MenuBar extends JMenuBar implements ActionListener {
 
 	private JMenu file_menu;
 	private JMenuItem open_menu_item, save_menu_item;
 	
-	public PicassoMenuBar() {
+	public MenuBar() {
 		//PF: Create JMenus
 		file_menu = new JMenu("File");
 		

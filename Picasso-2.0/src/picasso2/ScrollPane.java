@@ -5,9 +5,9 @@ import java.awt.Component;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
-public class PicassoScrollPane extends JScrollPane {
+public class ScrollPane extends JScrollPane {
 
-	public PicassoScrollPane(Component view) {
+	public ScrollPane(Component view) {
 		super(view);
 
 		 /*PF: Set vertical and horizontal 

@@ -12,15 +12,15 @@ import java.util.List;
  *  are processed in the program
  */
 
-public class PicassoController implements MouseListener, MouseMotionListener {
+public class MainController implements MouseListener, MouseMotionListener {
 	
-	private PicassoModel model;
-	private PicassoView view;
-	private CanvasPanel canvas;
+	private MainModel model;
+	private MainView view;
+	private PanelCanvas canvas;
 	private AbstractTool current_tool;
-	private PaintBrushTool paint_brush_tool;
+	private ToolPaintBrush paint_brush_tool;
 
-	public PicassoController(PicassoModel model, PicassoView view) {
+	public MainController(MainModel model, MainView view) {
 		/*PF: PicassoController gets model
 		 * and view, so user actions in
 		 * view can be used to edit the model.
@@ -38,7 +38,7 @@ public class PicassoController implements MouseListener, MouseMotionListener {
 		this.canvas.addMouseMotionListener(this);
 		
 		//PF: Create tools
-		paint_brush_tool = new PaintBrushTool(model, canvas);
+		paint_brush_tool = new ToolPaintBrush(model, canvas);
 		
 		//PF: Current Tool set to PaintBrushTool
 		current_tool = paint_brush_tool;

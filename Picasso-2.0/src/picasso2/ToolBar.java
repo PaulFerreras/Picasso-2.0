@@ -20,12 +20,12 @@ import javax.swing.event.MouseInputListener;
  * Also houses PicassoToolBarListener
  */
 
-public class PicassoToolBar extends PicassoAbstractToolBar implements INewObservable {
+public class ToolBar extends AbstractToolBar implements InterfaceNewObservable {
 	private JPanel background_panel;
-	private ToolPanel button_panel;
-	private INewObserver observer;
+	private PanelToolBar tool_panel;
+	private InterfaceNewObserver observer;
 	
-	public PicassoToolBar(String name) {
+	public ToolBar(String name) {
 		//PF: Name gets delegated to PicassoAbstractToolBar constructor
 		super(name);
 		
@@ -33,10 +33,10 @@ public class PicassoToolBar extends PicassoAbstractToolBar implements INewObserv
 		 * and Button Panel
 		 */
 		background_panel = new JPanel(null);
-		button_panel = new ToolPanel();
+		tool_panel = new PanelToolBar();
 		
 		//PF: Add PicassoButtonPanel as observer
-		addObserver(button_panel);
+		addObserver(tool_panel);
 		
 		/*PF: Must set preferred size of Background Panel
 		 * for ToolBar to be visible. Sets Background Panel
@@ -48,7 +48,7 @@ public class PicassoToolBar extends PicassoAbstractToolBar implements INewObserv
 		background_panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		//PF: Add button panel to background panel
-		background_panel.add(button_panel);
+		background_panel.add(tool_panel);
 		
 		//PF: Create PicassoToolBarListener
 		PicassoToolBarListener picasso_tbl = new PicassoToolBarListener();
@@ -75,7 +75,7 @@ public class PicassoToolBar extends PicassoAbstractToolBar implements INewObserv
 
 	//PF: Stores observer in private internal variable
 	@Override
-	public void addObserver(INewObserver o) {
+	public void addObserver(InterfaceNewObserver o) {
 		observer = o;
 	}
 

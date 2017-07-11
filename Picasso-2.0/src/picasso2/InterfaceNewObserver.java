@@ -1,6 +1,6 @@
 package picasso2;
 
-public interface INewObserver {
+public interface InterfaceNewObserver {
 	
 	public void update(Object obj);
 	

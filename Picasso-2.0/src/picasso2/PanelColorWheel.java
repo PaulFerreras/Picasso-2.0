@@ -18,34 +18,20 @@ import javax.swing.event.MouseInputAdapter;
 
 //PF: This is where color (chroma) can be selected
 
-public class ColorWheel extends JPanel {
+public class PanelColorWheel extends JPanel {
 	
+	private PanelBrightnessScale brightness_scale;
 	private BufferedImage color_wheel_bi;
-	
-	/*PF: Width and height variables determine
-	 * size of buffered image. Inset determines
-	 * distance of color wheel from edges of
-	 * buffered image.
-	 */
 	private int width = 200, height = 200,
 				radius, inset = 10,
+				smaller_radius, larger_inset = 13,
 				center_x, center_y;
-	
-	/*PF: Circle shape is used to make sure it will color 
-	 * the color wheel only inside the circle
-	 */
-	private Shape circle;
-	
-	/*PF: This will be the icon that the user can move 
-	 * inside the color wheel to select the color 
-	 * that they want to use
-	 */
-	private ColorWheelSelector color_wheel_selector;
-	
-	//PF: Used to keep track of where mouse was first clicked
-	private boolean in_circle;
+	private Shape circle, selection_circle;
+	private SelectorColor color_selector;
 
-	public ColorWheel() {
+	public PanelColorWheel(PanelBrightnessScale bs) {
+		brightness_scale = bs;
+		
 		//PF: Set preferred size
 		setPreferredSize(new Dimension(width, height));
 		
@@ -65,8 +51,6 @@ public class ColorWheel extends JPanel {
 		 * than calculating for the actual color
 		 */
 		color_wheel_bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		
-		
 		
 		/*PF: Get and store radius
 		 * Using inset to make the circle smaller
@@ -192,152 +176,72 @@ public class ColorWheel extends JPanel {
 			}
 		}
 		
-		//PF: Create graphics from buffered image
 		Graphics2D g2 = color_wheel_bi.createGraphics();
-		
-		//PF: Set color to black
 		g2.setColor(Color.BLACK);
-		
-		//PF: Draw black circle around color wheel as outline
 		g2.draw(circle);
-		
-		//PF: Dispose Graphics2D
 		g2.dispose();
 		
-		/*PF: Create ColorWheelSelector at center of ColorWheel
-		 * This will be the icon that the user can move
-		 * inside the color wheel to select the color 
-		 * that they want to use
-		 */
-		color_wheel_selector = new ColorWheelSelector(width / 2, height / 2);
+		color_selector = new SelectorColor(width/2, height/2);
 		
-		//PF: Create ColorWheelListener
-		ColorWheelListener cwl = new ColorWheelListener();
+		//PF: Smaller circle created so user doesn't 
+		//choose colors on border/outside of the color wheel
+		smaller_radius = (width / 2) - larger_inset;
+		selection_circle = new Ellipse2D.Float(larger_inset, larger_inset, smaller_radius*2, smaller_radius*2);
+
+		ColorWheelListener cwl = new ColorWheelListener(color_selector, selection_circle);
 		
-		//PF: Add ColorWheelListener as Mouse and MouseMotion Listener
 		addMouseListener(cwl);
 		addMouseMotionListener(cwl);
 	}
 
-	/*PF: This is the function called 
-	 * when ColorWheel gets repainted.
-	 * Overrides paintComponent of JPanel.
-	 * This allows Buffered Images to be drawn
-	 */
 	@Override
 	public void paintComponent(Graphics g) {
-		/* PF: Send graphics to JPanel above.
-		 * Allows the background of the component
-		 * to be opaque
-		 */
 		super.paintComponent(g);
 		
-		//PF: Draw Buffered Image at (0,0)
 		g.drawImage(color_wheel_bi, 0, 0, null);
 		
-		/*PF: Draws Color Wheel Selector by delegating
-		 * the drawing to the method drawSelector(Graphics2D)
-		 * in ColorWheelSelector
-		 */
-		color_wheel_selector.drawSelector((Graphics2D) g); 
+		color_selector.draw((Graphics2D) g); 
 	}
+
 	
-//Mouse and MotionListener for ColorWheel	
-public class ColorWheelListener extends MouseInputAdapter {
-	
-	public ColorWheelListener() {
+	public class ColorWheelListener extends AbstractChooserListener {
 		
-	}
-	
-	/*PF: When mouse is pressed or dragged, 
-	 * the color wheel selector is moved to that point.
-	 * **NOTE** The color wheel selector cannot 
-	 * be moved outside of the color wheel.
-	 * If user first clicks outside of the wheel
-	 * then drags mouse, the color wheel 
-	 * selector must not move.
-	 */
-	
-	@Override
-	public void mousePressed(MouseEvent e) {
-		/*PF: If mouse is pressed inside 
-		 * of the color wheel circle
-		 */
-		if(circle.contains(e.getX(), e.getY())) {
-			
-			//PF: in_circle boolean is set to true
-			in_circle = true;
-			
-			//PF: Color Wheel Selector is moved to mouse's spot
-			color_wheel_selector.moveSelector(e.getX(), e.getY());
-			
-			/*PF: ColorWheel is only repainted if 
-			 * the mouse click is inside the circle
-			 */
-			repaint();
-		
-		/*PF: If mouse is pressed outside
-		 * of the color wheel circle
-		 */
-		} else {
-			
-			//PF: in_circle boolean is set to false
-			in_circle = false;
+		public ColorWheelListener(AbstractSelector selector, Shape boundary) {
+			super(selector, boundary);
 		}
-	}
-	
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		
-		/*PF: Checks to see if initial mouse click
-		 * is inside of the color wheel circle
-		 */
-		if(in_circle) {
-			
-			/*PF: If mouse is dragged inside
-			 * of the color wheel circle
+
+		@Override
+		public void changeColor(int x, int y) {
+			brightness_scale.setColor(new Color(color_wheel_bi.getRGB(x, y)));
+			getParent().repaint();
+		}
+
+		@Override
+		public void moveSelectorToEdge(int x, int y) {
+			/*PF: The location of the Color Wheel Selector
+			 * is calculated on the circumference 
+			 * of the Color Wheel Circle.
+			 * This is done by calculating the polar 
+			 * coordinates of the location and converting 
+			 * them to x, y (cartesian) coordinates.
 			 */
-			if(circle.contains(e.getX(), e.getY())) {
-				
-				//PF: Color Wheel Selector is moved to mouse's spot
-				color_wheel_selector.moveSelector(e.getX(), e.getY());
-				
-			/*PF: If mouse is dragged outside
-			 * of the color wheel circle
-			 */
-			} else {
-				
-				/*PF: The location of the Color Wheel Selector
-				 * is calculated on the circumference 
-				 * of the Color Wheel Circle.
-				 * This is done by calculating the polar 
-				 * coordinates of the location and converting 
-				 * them to x, y (cartesian) coordinates.
-				 */
-				
-				//PF: Calculate theta by using Math.atan2 method (y, x)
-				double radians = Math.atan2(e.getY() - center_y, e.getX() - center_x);
-
-				/*PF: Convert polar coordinates to x, y coordinates 
-				 * using following equations:
-				 * x = r * cos(theta)
-				 * y = r * sin(theta)
-				 * with r being the radius of the circle
-				 */
-				double x = (radius * Math.cos(radians)) + center_x;
-				double y = (radius * Math.sin(radians)) + center_y;
-
-				//PF: Color Wheel Selector is moved to the proper x, y coordinate
-				color_wheel_selector.moveSelector((int) x, (int) y);
-
-			}
 			
-			//PF: Color Wheel Circle is repainted
-			repaint();
+			//PF: Calculate theta by using Math.atan2 method (y, x)
+			double radians = Math.atan2(y - center_y, x - center_x);
+
+			/*PF: Convert polar coordinates to x, y coordinates 
+			 * using following equations:
+			 * x = r * cos(theta)
+			 * y = r * sin(theta)
+			 * with r being the radius of the circle
+			 */
+			double new_x = (smaller_radius * Math.cos(radians)) + center_x;
+			double new_y = (smaller_radius * Math.sin(radians)) + center_y;
+
+			moveSelector((int) new_x, (int) new_y);
+			
 		}
 		
 	}
-	
- }
 	
 }

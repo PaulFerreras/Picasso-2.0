@@ -12,16 +12,16 @@ import javax.swing.JPanel;
  * Observer of Canvas
  */
 
-public class CanvasContainer extends JPanel implements INewObserver {
+public class PanelCanvasContainer extends JPanel implements InterfaceNewObserver {
 	
-	private CanvasPanel canvas_panel;
+	private PanelCanvas canvas_panel;
 	private int se_circle_x;
 	private int se_circle_y;
 	private int se_circle_radius;
 	private Color se_circle_colorfill;
 	private Color se_circle_colordraw;
 	
-	public CanvasContainer(CanvasPanel cp) {
+	public PanelCanvasContainer(PanelCanvas cp) {
 		/*PF: Set Layout to null to 
 		 * allow for resizing Canvas
 		 */

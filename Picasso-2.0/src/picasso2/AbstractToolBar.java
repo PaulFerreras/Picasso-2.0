@@ -8,14 +8,14 @@ import javax.swing.event.MouseInputAdapter;
 
 //PF: Abstract class that extends JToolBar
 
-abstract public class PicassoAbstractToolBar extends JToolBar {
+abstract public class AbstractToolBar extends JToolBar {
 
-	public PicassoAbstractToolBar() {
+	public AbstractToolBar() {
 		//PF: Add PicassoAbstractToolBarListener as a mouse motion listener
 		addMouseMotionListener(new PicassoAbstractToolBarListener());
 	}
 	
-	public PicassoAbstractToolBar(String name) {
+	public AbstractToolBar(String name) {
 		//PF: Name gets delegated to JToolBar constructor
 		super(name);
 		

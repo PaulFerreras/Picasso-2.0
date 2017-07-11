@@ -11,14 +11,14 @@ import java.awt.image.BufferedImage;
 
 //PF: PaintBrushTool contains all the data used to draw on PicassoModel
 
-public class PaintBrushTool extends AbstractTool {
+public class ToolPaintBrush extends AbstractTool {
 
-	private PicassoModel model;
-	private CanvasPanel canvas;
+	private MainModel model;
+	private PanelCanvas canvas;
 	private int brush_size = 10;
 	private Color brush_color = Color.BLACK;
 	
-	public PaintBrushTool(PicassoModel model, CanvasPanel canvas) {
+	public ToolPaintBrush(MainModel model, PanelCanvas canvas) {
 		this.model = model;
 		this.canvas = canvas;
 	}

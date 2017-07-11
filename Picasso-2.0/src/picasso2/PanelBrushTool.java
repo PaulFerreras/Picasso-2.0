@@ -8,20 +8,18 @@ import javax.swing.JPanel;
 
 //PF: This is the UI of the BrushTool
 
-public class BrushPanel extends JPanel {
+public class PanelBrushTool extends JPanel {
+	
+	private Dimension preferred_size = new Dimension(400, 300);
 
-	public BrushPanel() {
-		//PF: Set Layout to null
+	public PanelBrushTool() {
 		setLayout(null);
+		setPreferredSize(preferred_size);
 		
-		//PF: Set Border to black line border
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
-		//PF: Set preferred size
-		setPreferredSize(new Dimension(400, 300));
-		
-		//PF: Create panels
-		ColorSelectionPanel color_selection_panel = new ColorSelectionPanel();
+		//PF: Panels
+		PanelColorSelection color_selection_panel = new PanelColorSelection();
 		
 		//PF: Add panels
 		add(color_selection_panel);

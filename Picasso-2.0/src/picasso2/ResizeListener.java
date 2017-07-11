@@ -11,14 +11,14 @@ import javax.swing.event.MouseInputAdapter;
 
 public class ResizeListener extends MouseInputAdapter {
 
-	private CanvasContainer canvas_container;
-	private CanvasPanel canvas_panel;
+	private PanelCanvasContainer canvas_container;
+	private PanelCanvas canvas_panel;
 	private int canvas_width, canvas_height, 
 				canvas_min_width, canvas_min_height,
 				canvas_max_width, canvas_max_height,
 				top_inset, bottom_inset, right_inset, left_inset;
 	
-	public ResizeListener(CanvasContainer cc, CanvasPanel cp, 
+	public ResizeListener(PanelCanvasContainer cc, PanelCanvas cp, 
 			int top_inset, int bottom_inset, int left_inset, int right_inset) {
 		/*PF: Store Canvas Container and Canvas Panel
 		 * in private internal variables
