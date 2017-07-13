@@ -1,0 +1,20 @@
+Picasso 2.0 7/13/17
+
+What I've implemented so far:
+- Buffered Image
+- Resizable Canvas Panel
+- Tool Bar
+- Tool Bar Tool UI
+- Color Wheel
+- Brightness Scale
+- Brush Tool
+
+What I still need to implement:
+- Prevent drawing on buffered image when off of image
+- Finish Brush Tool Panel
+- Color Selector Tool/Panel
+- Magnifying Tool/Panel
+- Shape Tool/Panel
+- Crop Tool/Panel
+- Fill Tool/Panel
+- Erase Tool/Panel
