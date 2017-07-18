@@ -12,6 +12,10 @@ abstract public class AbstractSelector {
 	protected int x, y;
 	protected Color color_fill, color_draw;
 
+	public AbstractSelector() {
+		
+	}
+	
 	public AbstractSelector(int x, int y) {
 		this.x = x;
 		this.y = y;

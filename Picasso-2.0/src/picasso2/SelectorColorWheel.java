@@ -5,11 +5,16 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
-public class SelectorColor extends AbstractSelector {
+public class SelectorColorWheel extends AbstractSelector {
 
 	private int radius = 18;
 	
-	public SelectorColor(int x, int y) {
+	public SelectorColorWheel() {
+		color_fill = Color.RED;
+		color_draw = Color.BLACK;
+	}
+	
+	public SelectorColorWheel(int x, int y) {
 		super(x, y);
 		
 		color_fill = Color.RED;

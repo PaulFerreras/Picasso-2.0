@@ -17,6 +17,9 @@ public class MainController implements MouseListener, MouseMotionListener {
 	private MainModel model;
 	private MainView view;
 	private PanelCanvas canvas;
+	private ChangeableColor changeable_color;
+	private ToolBar tool_bar;
+	private ToolBarToolUI tool_bar_tool_ui;
 	private AbstractTool current_tool;
 	private ToolPaintBrush paint_brush_tool;
 
@@ -27,18 +30,27 @@ public class MainController implements MouseListener, MouseMotionListener {
 		 */
 		this.model = model;
 		this.view = view;
-		this.canvas = view.getPicassoCanvas();
+		canvas = view.getPicassoCanvas();
+		
+		changeable_color = model.getChangeableColor();
+		
+		//PF: ToolBars
+		tool_bar = view.getToolBar();
+		tool_bar_tool_ui = view.getToolBarToolUI();
+		
+		PanelColorWheel color_wheel = tool_bar_tool_ui.getColorWheel();
+		PanelBrightnessScale brightness_scale = tool_bar_tool_ui.getBrightnessScale();
+		
+		//PF: Create tools
+		paint_brush_tool = new ToolPaintBrush(model, canvas, changeable_color);
 		
 		/*PF: PicassoController is added
 		 * as a MouseListener and 
 		 * a MouseMotionListener to
 		 * canvas
 		 */
-		this.canvas.addMouseListener(this);
-		this.canvas.addMouseMotionListener(this);
-		
-		//PF: Create tools
-		paint_brush_tool = new ToolPaintBrush(model, canvas);
+		canvas.addMouseListener(this);
+		canvas.addMouseMotionListener(this);
 		
 		//PF: Current Tool set to PaintBrushTool
 		current_tool = paint_brush_tool;

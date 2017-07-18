@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 public class MainModel {
 
 	private BufferedImage bi;
+	private ChangeableColor changeable_color;
 	
 	public MainModel() {
 		
@@ -28,6 +29,7 @@ public class MainModel {
 		g2.fillRect(0, 0, bi.getWidth(), bi.getHeight());
 		g2.dispose();
 		
+		changeable_color = new ChangeableColor();
 	}
 	
 	public void setBufferedImage(BufferedImage new_bi) {
@@ -37,6 +39,10 @@ public class MainModel {
 	
 	public BufferedImage getBufferedImage() {
 		return bi;
+	}
+	
+	public ChangeableColor getChangeableColor() {
+		return changeable_color;
 	}
 	
 	private int previous_x, previous_y;

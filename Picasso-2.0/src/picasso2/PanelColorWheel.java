@@ -1,20 +1,16 @@
 package picasso2;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.event.MouseEvent;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.event.MouseInputAdapter;
 
 //PF: This is where color (chroma) can be selected
 
@@ -22,12 +18,12 @@ public class PanelColorWheel extends JPanel {
 	
 	private PanelBrightnessScale brightness_scale;
 	private BufferedImage color_wheel_bi;
-	private int width = 200, height = 200,
+	private int width = 200, height = width,
 				radius, inset = 10,
 				smaller_radius, larger_inset = 13,
 				center_x, center_y;
 	private Shape circle, selection_circle;
-	private SelectorColor color_selector;
+	private SelectorColorWheel color_selector;
 
 	public PanelColorWheel(PanelBrightnessScale bs) {
 		brightness_scale = bs;
@@ -181,17 +177,19 @@ public class PanelColorWheel extends JPanel {
 		g2.draw(circle);
 		g2.dispose();
 		
-		color_selector = new SelectorColor(width/2, height/2);
+		color_selector = new SelectorColorWheel();
+		
+		//PF: Place selector in middle of Color Wheel
+		moveSelector(width/2, height/2);
 		
 		//PF: Smaller circle created so user doesn't 
 		//choose colors on border/outside of the color wheel
 		smaller_radius = (width / 2) - larger_inset;
 		selection_circle = new Ellipse2D.Float(larger_inset, larger_inset, smaller_radius*2, smaller_radius*2);
-
-		ColorWheelListener cwl = new ColorWheelListener(color_selector, selection_circle);
 		
-		addMouseListener(cwl);
-		addMouseMotionListener(cwl);
+		ListenerColorWheel color_wheel_listener = new ListenerColorWheel(this);
+		addMouseListener(color_wheel_listener);
+		addMouseMotionListener(color_wheel_listener);
 	}
 
 	@Override
@@ -202,46 +200,29 @@ public class PanelColorWheel extends JPanel {
 		
 		color_selector.draw((Graphics2D) g); 
 	}
-
 	
-	public class ColorWheelListener extends AbstractChooserListener {
+	public int getCenterX() {
+		return center_x;
+	}
+	
+	public int getCenterY() {
+		return center_y;
+	}
+	
+	public int getSmallerRadius() {
+		return smaller_radius;
+	}
+	
+	public Shape getBoundary() {
+		return selection_circle;
+	}
+	
+	public void moveSelector(int x, int y) {
+		color_selector.moveSelector(x, y);
 		
-		public ColorWheelListener(AbstractSelector selector, Shape boundary) {
-			super(selector, boundary);
-		}
-
-		@Override
-		public void changeColor(int x, int y) {
-			brightness_scale.setColor(new Color(color_wheel_bi.getRGB(x, y)));
-			getParent().repaint();
-		}
-
-		@Override
-		public void moveSelectorToEdge(int x, int y) {
-			/*PF: The location of the Color Wheel Selector
-			 * is calculated on the circumference 
-			 * of the Color Wheel Circle.
-			 * This is done by calculating the polar 
-			 * coordinates of the location and converting 
-			 * them to x, y (cartesian) coordinates.
-			 */
-			
-			//PF: Calculate theta by using Math.atan2 method (y, x)
-			double radians = Math.atan2(y - center_y, x - center_x);
-
-			/*PF: Convert polar coordinates to x, y coordinates 
-			 * using following equations:
-			 * x = r * cos(theta)
-			 * y = r * sin(theta)
-			 * with r being the radius of the circle
-			 */
-			double new_x = (smaller_radius * Math.cos(radians)) + center_x;
-			double new_y = (smaller_radius * Math.sin(radians)) + center_y;
-
-			moveSelector((int) new_x, (int) new_y);
-			
-		}
-		
+		//Change Color
+		brightness_scale.setBrightnessColor(new Color(color_wheel_bi.getRGB(x, y)));
+		repaint();
 	}
 	
 }

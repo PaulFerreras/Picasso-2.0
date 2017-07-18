@@ -5,33 +5,32 @@ import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.LayoutManager;
 import java.awt.Shape;
-import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.event.MouseInputAdapter;
 
 //PF: This is where the brightness (value) of the color can be selected
 
 public class PanelBrightnessScale extends JPanel {
 
+	private PanelColorPreview color_preview;
 	private BufferedImage brightness_scale_bi;
 	private Shape rectangle;
-	private int width = 100, height = 200,
+	private int width = 50, height = 200,
 				brightness_scale_width = 20,
 				brightness_scale_height = 180;
 	private Color cw_color = Color.WHITE, outline_color = Color.BLACK;                           //Color edited by color wheel;
-	private BrightnessSelector brightness_selector;
+	private SelectorBrightnessScale brightness_selector;
 	
-	public PanelBrightnessScale() {
+	public PanelBrightnessScale(PanelColorPreview cp) {
 		setPreferredSize(new Dimension(width, height));
 		
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		color_preview = cp;
 		
 		brightness_scale_bi = new BufferedImage(brightness_scale_width,
 				brightness_scale_height, 
@@ -45,13 +44,14 @@ public class PanelBrightnessScale extends JPanel {
 		//PF: Draw brightness scale
 		repaintBufferedImage();
 		
-		//PF: Placed brightness selector at top of brightness scale
-		brightness_selector = new BrightnessSelector((width/2) - (brightness_scale_width/2), height/2);
+		brightness_selector = new SelectorBrightnessScale((width/2) - (brightness_scale_width/2), 0, brightness_scale_width);
 		
-		BrightnessScaleListener bs_listener = new BrightnessScaleListener(brightness_selector, rectangle);
+		//PF: Placed brightness selector at the bottom of brightness scale
+		moveSelector(0, 186);
 		
-		addMouseListener(bs_listener);
-		addMouseMotionListener(bs_listener);
+		ListenerBrightnessScale brightness_scale_listener = new ListenerBrightnessScale(this);
+		addMouseListener(brightness_scale_listener);
+		addMouseMotionListener(brightness_scale_listener);
 	}
 	
 	@Override
@@ -71,91 +71,49 @@ public class PanelBrightnessScale extends JPanel {
 		g2.draw(rectangle);
 	}
 	
-	public void setColor(Color c) {
+	public int getBrightnessScaleHeight() {
+		return brightness_scale_height;
+	}
+	
+	public int getSelectorHeight() {
+		return brightness_selector.getHeight();
+	}
+	
+	public Shape getBoundary() {
+		return rectangle;
+	}
+	
+	public void moveSelector(int x, int y) {
+		brightness_selector.moveSelector(brightness_selector.getX(), y);
+		
+		setPreviewColor(x, y);
+		
+		repaint();
+	}
+	
+	public void setBrightnessColor(Color c) {
 		cw_color = c;
 		
 		repaintBufferedImage();
 		
+		setPreviewColor(brightness_selector.getX(), brightness_selector.getY());
+		
 		repaint();
+	}
+	
+	public void setPreviewColor(int x, int y) {
+		//PF: Shift x and y variables
+		//to be on brightness_scale_bi
+		x = 0;
+		y -= 10;
+		
+		color_preview.setColor(new Color(brightness_scale_bi.getRGB(x, y)));
 	}
 	
 	public void repaintBufferedImage() {
 		Graphics2D g2 = brightness_scale_bi.createGraphics();
 		g2.setPaint(new GradientPaint(0, 0, cw_color, 0, brightness_scale_height, Color.BLACK));
 		g2.fillRect(0, 0, brightness_scale_width, brightness_scale_height);
-	}
-	
-	private class BrightnessSelector extends AbstractSelector {
-		
-		private int height = 4;
-		
-		public BrightnessSelector(int x, int y) {
-			super(x, y);
-		}
-		
-		public int getX() {
-			return x;
-		}
-
-		public int getHeight() {
-			return height;
-		}
-		
-		@Override
-		public Shape getShape() {
-			return new Rectangle2D.Float(x, y, brightness_scale_width, height);
-		}
-
-		@Override
-		public void draw(Graphics2D g2) {
-			g2.setColor(Color.RED);
-			g2.fill(getShape());
-		}
-		
-	}
-	
-	private class BrightnessScaleListener extends AbstractChooserListener {
-		
-		private int top_boundary, bottom_boundary;
-		
-		private BrightnessScaleListener(AbstractSelector selector, Shape boundary) {
-			super(selector, boundary);
-			
-			top_boundary = (height - brightness_scale_height)/2;
-			bottom_boundary = height - top_boundary  - ((BrightnessSelector) selector).getHeight();
-		}
-
-		@Override
-		public void moveSelector(int x, int y) {
-			selector.moveSelector(((BrightnessSelector) selector).getX(), y);
-			
-			changeColor(x, y);
-		}
-		
-		@Override
-		public void changeColor(int x, int y) {
-			getParent().repaint();
-			
-		}
-
-		@Override
-		public void moveSelectorToEdge(int x, int y) {
-			
-		}
-		
-		@Override
-		public void mouseDragged(MouseEvent e) {
-			if(in_bounds) {
-				if(e.getY() < top_boundary) {
-					moveSelector(e.getX(), top_boundary);
-				} else if (e.getY() > bottom_boundary) {
-					moveSelector(e.getX(), bottom_boundary);
-				} else {
-					moveSelector(e.getX(), e.getY());
-				}
-			}
-		}
-		
 	}
 
 }

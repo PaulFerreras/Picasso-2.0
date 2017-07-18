@@ -16,11 +16,13 @@ public class ToolPaintBrush extends AbstractTool {
 	private MainModel model;
 	private PanelCanvas canvas;
 	private int brush_size = 10;
-	private Color brush_color = Color.BLACK;
+	private ChangeableColor changeable_color;
+	//private Color brush_color = Color.BLACK;
 	
-	public ToolPaintBrush(MainModel model, PanelCanvas canvas) {
+	public ToolPaintBrush(MainModel model, PanelCanvas canvas, ChangeableColor changeable_color) {
 		this.model = model;
 		this.canvas = canvas;
+		this.changeable_color = changeable_color;
 	}
 
 	//PF: Returns size
@@ -38,12 +40,12 @@ public class ToolPaintBrush extends AbstractTool {
 	
 	//PF: Returns color
 	private Color getColor() {
-		return brush_color;
+		return changeable_color.getColor();
 	}
 	
 	//PF: Sets color
 	private void setColor(Color new_color) {
-		brush_color = new_color;
+		changeable_color.setColor(new_color);
 	}
 	
 	//PF: Returns cursor specified by PaintBrushTool
@@ -62,7 +64,7 @@ public class ToolPaintBrush extends AbstractTool {
 		Graphics2D g2 = brush_cursor_image.createGraphics();
 
 		//PF: Set brush color and fill the appropriate size 
-		g2.setColor(brush_color);
+		g2.setColor(changeable_color.getColor());
 		g2.fillOval(0, 0, brush_size, brush_size);
 		
 		/*PF: This point (hot spot) is the 
@@ -84,13 +86,13 @@ public class ToolPaintBrush extends AbstractTool {
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
-		model.draw(e.getID(),e.getX(), e.getY(), brush_size, brush_color);
+		model.draw(e.getID(),e.getX(), e.getY(), brush_size, changeable_color.getColor());
 		canvas.repaint();
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		model.draw(e.getID(),e.getX(), e.getY(), brush_size, brush_color);
+		model.draw(e.getID(),e.getX(), e.getY(), brush_size, changeable_color.getColor());
 		canvas.repaint();
 	}
 }
