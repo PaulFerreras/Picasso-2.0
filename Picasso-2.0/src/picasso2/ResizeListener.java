@@ -98,6 +98,10 @@ public class ResizeListener extends MouseInputAdapter {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		start_point = e.getPoint();
+		
+		//PF: Sets buffered image to holder to allow for buffered image to repaint
+		//On new resized image
+		canvas_panel.setBIHolder();
 	}
 	
 	//PF: Right Side and Bottom
@@ -112,10 +116,6 @@ public class ResizeListener extends MouseInputAdapter {
 		
 		//PF: Checks if cursor is not the default cursor
 		if(canvas_container.getCursor() != Cursor.getDefaultCursor()) {
-			
-//			System.out.println("e.getX(): " + e.getX());
-//			System.out.println("e.getY(): " + e.getY());
-			
 			
 			//PF: Variables X, Y, W, and H are set (reset)
 			x = canvas_panel.getX();
@@ -235,12 +235,15 @@ public class ResizeListener extends MouseInputAdapter {
 	
 	/*PF: Set bounds method in CanvasPanel is called,
 	 * CanvasContainer is repainted
+	 * and buffered image is resized
+	 * 
 	 * **NOTE** Repainting CanvasContainer allows
 	 * CanvasPanel to be redrawn at new size
-	 * and SE resize circle to be repositioned
+	 * and SE resize circle to be repositioned.
 	 */
 	private void setBounds(int x, int y, int w, int h) {
 		canvas_panel.setBounds(x, y, w, h);
+		canvas_panel.setBufferedImageSize(w, h);
 		canvas_container.repaint();
 	}
 	
@@ -248,6 +251,10 @@ public class ResizeListener extends MouseInputAdapter {
 	 * (mouse is released)
 	 * new Canvas width and height
 	 * are gotten and stored
+	 *
+	 * Canvas Container must have
+	 * preferred size set and revalidated
+	 * to allow jscrollbars to be updated
 	 */
 	public void mouseReleased(MouseEvent e) {
 		canvas_width = canvas_panel.getWidth();

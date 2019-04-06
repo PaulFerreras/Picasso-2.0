@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /*PF: This is where the actual buffered image is rendered
- * Observable to CanvasConainer
+ * Observable to CanvasContainer
  */
 
 public class PanelCanvas extends JPanel implements InterfaceNewObservable {
@@ -23,13 +23,7 @@ public class PanelCanvas extends JPanel implements InterfaceNewObservable {
 	
 	public PanelCanvas(MainModel model) {
 		//PF: Set bounds of Canvas
-		setBounds(0, 0, 300, 300);
-		
-		//PF: Set MinimumSize of Canvas
-		setMinimumSize(new Dimension(100, 100));
-		
-		//PF: Set MaximumSize of Canvas
-		setMaximumSize(new Dimension(2000, 2000));
+		setBounds(0, 0, model.getWidth(), model.getHeight());
 		
 		//PF: Set Border to Black Line Border
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -114,5 +108,15 @@ public class PanelCanvas extends JPanel implements InterfaceNewObservable {
 		 * does not need to update with any info
 		 */
 		if (observer != null) notifyObserver(null);
+	}
+	
+	//Used to hold buffered image temporarily when resizing images
+	public void setBIHolder() {
+		model.setBIHolder();
+	}
+	
+	//Sets buffered image to new size
+	public void setBufferedImageSize(int width, int height) {
+		model.setBufferedImageSize(width, height);
 	}
 }
