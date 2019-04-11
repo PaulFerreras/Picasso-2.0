@@ -17,6 +17,7 @@ public class MainController implements MouseListener, MouseMotionListener {
 	private MainModel model;
 	private MainView view;
 	private PanelCanvas canvas;
+	private PanelCanvasContainer canvas_container;
 	private ChangeableColor changeable_color;
 	private ToolBar tool_bar;
 	private ToolBarToolUI tool_bar_tool_ui;
@@ -31,6 +32,7 @@ public class MainController implements MouseListener, MouseMotionListener {
 		this.model = model;
 		this.view = view;
 		canvas = view.getPicassoCanvas();
+		canvas_container = (PanelCanvasContainer) canvas.getParent();
 		
 		changeable_color = model.getChangeableColor();
 		
@@ -96,12 +98,19 @@ public class MainController implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		 current_tool.mouseDragged(e);
+		//Set PixelInspector coords when mouse has dragged
+		//For some reason dragging mouse doesn't fire moved event- PF
+		canvas_container.setPixelInspectorCoords(e.getX(), e.getY());
+		
+		current_tool.mouseDragged(e);
 	}
 
+	
+	
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseMoved(MouseEvent e) {
+		//Set PixelInspector Coords when mouse has moved - PF
+		canvas_container.setPixelInspectorCoords(e.getX(), e.getY());
 		
 	}
 

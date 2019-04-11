@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 public class PanelCanvasContainer extends JPanel implements InterfaceNewObserver {
 	
 	private PanelCanvas canvas_panel;
+	private PixelInspector pixel_inspector;
 	private int se_circle_x;
 	private int se_circle_y;
 	private int se_circle_radius;
@@ -58,6 +59,10 @@ public class PanelCanvasContainer extends JPanel implements InterfaceNewObserver
 		setPreferredSize(new Dimension(canvas_panel.getWidth() + se_circle_radius, 
 				canvas_panel.getHeight() + se_circle_radius));
 		
+		
+		//Declare pixel inspector -PF
+		pixel_inspector = new PixelInspector(this);
+		
 		/*PF: Create ResizeListener.
 		 * Bottom and Right inset are set
 		 * to diameter of SE circle - 1
@@ -72,7 +77,20 @@ public class PanelCanvasContainer extends JPanel implements InterfaceNewObserver
 		addMouseListener(rl);
 		addMouseMotionListener(rl);
 	}
+
+	//Allows for Canvas Container to set the coords of the mouse
+	//Must repaint to allow pixels to change- PF
+	public void setPixelInspectorCoords(int x, int y) {
+		pixel_inspector.setCoords(x, y);
+		repaint();
+	}
 	
+	
+	//Allows for Pixel Inspector to get width of screen
+	//Will need to clean up this code -PF
+	public int getCanvasPanelWidth() {
+		return canvas_panel.getWidth();
+	}
 	
 	/*PF: This is the function called 
 	 * when the container gets repainted.
@@ -100,6 +118,9 @@ public class PanelCanvasContainer extends JPanel implements InterfaceNewObserver
 		
 		//PF: Draw in this circle with this size
 		g.drawOval(se_circle_x, se_circle_y, se_circle_radius, se_circle_radius);
+		
+		//Repaints pixel_inspector to show new coordinates -PF
+		pixel_inspector.paint(g);
 	}
 
 	public void update(Object obj) {
